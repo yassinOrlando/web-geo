@@ -82,7 +82,39 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container col-md-12">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card bg-warning">
+                            <div class="card-header text-center"><b>{{ __('Dashboard') }}</b></div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row justify-content-center" >
+                    <div class="col-md-2" style="margin-top: 20px">
+                        <div class="card text-white bg-secondary">
+                            <div class="card-header text-center">{{ __('OPTIONS') }}</div>
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-secondary"><a href="{{ url('/home') }}"> Profile </a></li>
+                                <li class="list-group-item bg-secondary"><a href="{{ url('#') }}"> Posts </a></li>
+                                <li class="list-group-item bg-secondary"><a href="{{ url('#') }}"> Categories </a></li>
+                                <li class="list-group-item bg-secondary"><a href="{{ url('#') }}"> Authors </a></li>
+                                <li class="list-group-item bg-secondary"><a href="{{ url('#') }}"> Countries </a></li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="col-md-10" style="margin-top: 20px">
+                        <div class="card">
+                            <div class="card-header text-center">@yield('title')</div>
+                            <div class="card-body">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>

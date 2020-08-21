@@ -83,9 +83,40 @@
         </nav>
 
         <main class="py-4">
-            <?php echo $__env->yieldContent('content'); ?>
+            <div class="container col-md-12">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card bg-warning">
+                            <div class="card-header text-center"><b><?php echo e(__('Dashboard')); ?></b></div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row justify-content-center" >
+                    <div class="col-md-2" style="margin-top: 20px">
+                        <div class="card text-white bg-secondary">
+                            <div class="card-header text-center"><?php echo e(__('OPTIONS')); ?></div>
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-secondary"><a href="<?php echo e(url('/home')); ?>"> Profile </a></li>
+                                <li class="list-group-item bg-secondary"><a href="<?php echo e(url('#')); ?>"> Posts </a></li>
+                                <li class="list-group-item bg-secondary"><a href="<?php echo e(url('#')); ?>"> Categories </a></li>
+                                <li class="list-group-item bg-secondary"><a href="<?php echo e(url('#')); ?>"> Authors </a></li>
+                                <li class="list-group-item bg-secondary"><a href="<?php echo e(url('#')); ?>"> Countries </a></li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="col-md-10" style="margin-top: 20px">
+                        <div class="card">
+                            <div class="card-header text-center"><?php echo $__env->yieldContent('title'); ?></div>
+                            <div class="card-body">
+                                <?php echo $__env->yieldContent('content'); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
-</html>
-<?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views/layouts/app.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views/layouts/dashboard.blade.php ENDPATH**/ ?>
