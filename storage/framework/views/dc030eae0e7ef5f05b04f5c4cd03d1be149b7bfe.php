@@ -6,23 +6,92 @@
                 <div class="card-header"><?php echo e(__('Register')); ?></div>
 
                 <div class="card-body">
+
                     <form method="POST" action="<?php echo e(route('register')); ?>">
                         <?php echo csrf_field(); ?>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Name')); ?></label>
+                            <label for="img" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Profile image')); ?></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control <?php $__errorArgs = ['name'];
+                                <input id="img" type="text" class="form-control <?php $__errorArgs = ['img'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-valid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('img')); ?>" name="img">
+
+                                <?php $__errorArgs = ['img'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right"><?php echo e(__('User role')); ?></label>
+                           
+                                
+                            <div class="col-md-6">
+                                <select name="role" id="role">
+                                    <option value="author"> Author </option>
+                                    <option value="admin"> Admin </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="f_name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('First name')); ?></label>
+
+                            <div class="col-md-6">
+                                <input id="f_name" type="text" class="form-control <?php $__errorArgs = ['f_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="name" value="<?php echo e(old('name')); ?>" required autocomplete="name" autofocus>
+unset($__errorArgs, $__bag); ?>" name="f_name" value="<?php echo e(old('f_name')); ?>" required autocomplete="f_name" autofocus>
 
-                                <?php $__errorArgs = ['name'];
+                                <?php $__errorArgs = ['f_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="last_name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Last name')); ?></label>
+
+                            <div class="col-md-6">
+                                <input id="last_name" type="text" class="form-control <?php $__errorArgs = ['last_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="last_name" value="<?php echo e(old('last_name')); ?>" required autocomplete="last_name">
+
+                                <?php $__errorArgs = ['last_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

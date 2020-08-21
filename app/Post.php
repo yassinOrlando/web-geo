@@ -9,7 +9,7 @@ class Post extends Model
     protected $table = 'posts';
 
     public function post(){
-        return $this->belongsTo('App\Author');
+        return $this->belongsTo('App\User');
     }
 
     public function post(){
