@@ -108,7 +108,7 @@
                     <div class="col-md-10" style="margin-top: 20px">
                         <div class="card">
                             <div class="card-header text-center">@yield('title')</div>
-                            <div class="card-body">
+                            <div class="card-body justify-content-center">
                                 @yield('content')
                             </div>
                         </div>

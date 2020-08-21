@@ -109,7 +109,7 @@
                     <div class="col-md-10" style="margin-top: 20px">
                         <div class="card">
                             <div class="card-header text-center"><?php echo $__env->yieldContent('title'); ?></div>
-                            <div class="card-body">
+                            <div class="card-body justify-content-center">
                                 <?php echo $__env->yieldContent('content'); ?>
                             </div>
                         </div>
