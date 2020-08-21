@@ -41,7 +41,6 @@ unset($__errorArgs, $__bag); ?>
                         <div class="form-group row">
                             <label for="role" class="col-md-4 col-form-label text-md-right"><?php echo e(__('User role')); ?></label>
                            
-                                
                             <div class="col-md-6">
                                 <select name="role" id="role">
                                     <option value="author"> Author </option>

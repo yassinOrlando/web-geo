@@ -29,16 +29,6 @@
                         <div class="form-group row">
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('User role') }}</label>
                            
-                                {{--
-                                <div class="col-md-6">
-                                    <input id="role" type="text" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="role" >
-    
-                                    @error('role')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div> --}}
                             <div class="col-md-6">
                                 <select name="role" id="role">
                                     <option value="author"> Author </option>
