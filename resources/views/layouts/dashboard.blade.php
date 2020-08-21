@@ -96,11 +96,11 @@
                         <div class="card text-white bg-secondary">
                             <div class="card-header text-center">{{ __('OPTIONS') }}</div>
                             <ul class="list-group list-group-flush">
-                            <li class="list-group-item bg-secondary"><a href="{{ url('/home') }}"> Profile </a></li>
-                                <li class="list-group-item bg-secondary"><a href="{{ url('#') }}"> Posts </a></li>
-                                <li class="list-group-item bg-secondary"><a href="{{ url('#') }}"> Categories </a></li>
-                                <li class="list-group-item bg-secondary"><a href="{{ url('#') }}"> Authors </a></li>
-                                <li class="list-group-item bg-secondary"><a href="{{ url('#') }}"> Countries </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home') }}"> Profile </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home/posts') }}"> Posts </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('#') }}"> Categories </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('#') }}"> Authors </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('#') }}"> Countries </a></li>
                             </ul>
                         </div>
                     </div>
