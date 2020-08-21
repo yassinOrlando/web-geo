@@ -1,12 +1,10 @@
-@extends('layouts.dashboard')
+<?php $__env->startSection('title', 'POSTS'); ?>
 
-@section('title', 'AUTHORS')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container col-md-12">
         <div class="container">
             <div class="row d-flex justify-content-between">
-                <span> Total authors: (5) </span>
+                <span> Total categories: (5) </span>
 
                 <form class="form-inline my-2 my-lg-0 mr-md-2 ">
                     <label for="add" class="mr-sm-2"> New category: </label>
@@ -69,4 +67,5 @@
         </div>
         
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.dashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views//administration/categories.blade.php ENDPATH**/ ?>

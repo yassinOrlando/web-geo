@@ -19,5 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+/*Routes for administration
+    Root dashboard routes
+*/
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/posts', 'PostController@index')->name('posts');
+Route::get('/home/categories', 'CategoryController@index')->name('categories');

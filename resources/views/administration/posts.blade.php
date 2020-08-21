@@ -27,7 +27,7 @@
                     <th scope="col">Category</th>
                     <th scope="col">Author</th>
                     <th scope="col">Created at</th>
-                    <th scope="col">Updates at</th>
+                    <th scope="col">Updated at</th>
                     <th scope="col">Actions</th>
                     
                   </tr>
