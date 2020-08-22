@@ -4,7 +4,9 @@
 
 @section('content')
     <div class="container col-md-6">
-        <img src="{{ Auth::user()->img }} " alt="profile" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+        <div class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+            <img src="{{ Auth::user()->img }} " alt="profile" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+        </div>
         <div class="md-6">
             <strong> Role: </strong> {{ Auth::user()->role }} 
         </div>

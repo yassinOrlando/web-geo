@@ -2,7 +2,9 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="container col-md-6">
-        <img src="<?php echo e(Auth::user()->img); ?> " alt="profile" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+        <div class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+            <img src="<?php echo e(Auth::user()->img); ?> " alt="profile" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+        </div>
         <div class="md-6">
             <strong> Role: </strong> <?php echo e(Auth::user()->role); ?> 
         </div>

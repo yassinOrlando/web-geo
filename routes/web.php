@@ -24,6 +24,11 @@ Auth::routes();
 */
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/{id}/posts', 'PostController@index')->name('posts');
-Route::get('/home/{id}/categories', 'CategoryController@index')->name('categories');
+Route::get('/home/{id}/categories', 'CategoryController@index')->name('categories');//We see the categ and add them in the same file
 Route::get('/home/{id}/authors', 'AuthorController@index')->name('authors');
 Route::get('/home/{id}/countries', 'CountryController@index')->name('countries');
+
+/*Routes for administration
+    Routes for adding content
+*/
+Route::post('/home/{id}/categories', 'CategoryController@add')->name('categories_add');//We see the categ and add them in the same file
