@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -23,6 +24,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('/administration/categories');
+        $total_cats = count(Category::get());
+        $categories = Category::orderby('id', 'desc')
+                        ->paginate(1);
+        return view('/administration/categories', ['categories' => $categories, 'total_cats' => $total_cats]);
     }
 }

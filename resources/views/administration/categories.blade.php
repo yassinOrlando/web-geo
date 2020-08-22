@@ -6,7 +6,7 @@
     <div class="container col-md-12">
         <div class="container">
             <div class="row d-flex justify-content-between">
-                <span> Total categories: (5) </span>
+                <span> Total categories: ({{ $total_cats }}) </span>
 
                 <form class="form-inline my-2 my-lg-0 mr-md-2 ">
                     <label for="add" class="mr-sm-2"> New category: </label>
@@ -34,38 +34,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
+                  @foreach ($categories as $category)
+                    <tr>
+                      <th scope="row"> {{ $category->id }} </th>
+                      <td> {{ $category->name }} </td>
+                      <td> {{ $category->created_at->format('j F, Y') }} </td>
+                      <td> {{ $category->updated_at->format('j F, Y') }} </td>
+                      <td class="d-flex justify-content-around" >
+                          <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
+                          <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
+              {{ $categories->links() }}
         </div>
         
     </div>

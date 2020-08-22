@@ -6,7 +6,7 @@
             <div class="row d-flex justify-content-between">
                 <button class="btn btn-primary "> New post </button>
     
-                <span class="align-baseline "> Total posts: (<?php echo e(count($posts)); ?>) </span>
+                <span class="align-baseline "> Total posts: (<?php echo e($total_posts); ?>) </span>
     
                 <form class="form-inline my-2 my-lg-0 mr-md-2 ">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

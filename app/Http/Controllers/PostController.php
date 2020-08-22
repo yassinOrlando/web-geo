@@ -24,8 +24,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        $total_posts = count(Post::get());
         $posts = Post::orderBy('id', 'desc')
                         ->paginate(4);
-        return view('/administration/posts', ['posts' => $posts]);
+        return view('/administration/posts', ['posts' => $posts, 'total_posts' => $total_posts]);
     }
 }
