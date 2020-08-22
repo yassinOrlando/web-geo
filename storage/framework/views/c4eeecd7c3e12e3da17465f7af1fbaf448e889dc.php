@@ -97,11 +97,11 @@
                         <div class="card text-white bg-secondary">
                             <div class="card-header text-center"><?php echo e(__('OPTIONS')); ?></div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home')); ?>"> Profile </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home/posts')); ?>"> Posts </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home/categories')); ?>"> Categories </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home/authors')); ?>"> Authors </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home/countries')); ?>"> Countries </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('home')); ?>"> Profile </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('posts', ['id' => Auth::user()->id ])); ?>"> Posts </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('categories', ['id' => Auth::user()->id ])); ?>"> Categories </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('authors', ['id' => Auth::user()->id ])); ?>"> Authors </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('countries', ['id' => Auth::user()->id ])); ?>"> Countries </a></li>
                             </ul>
                         </div>
                     </div>

@@ -8,7 +8,7 @@
             <div class="row d-flex justify-content-between">
                 <button class="btn btn-primary "> New post </button>
     
-                <span class="align-baseline "> Total posts: (5) </span>
+                <span class="align-baseline "> Total posts: ({{ count($posts) }}) </span>
     
                 <form class="form-inline my-2 my-lg-0 mr-md-2 ">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -29,51 +29,27 @@
                     <th scope="col">Created at</th>
                     <th scope="col">Updated at</th>
                     <th scope="col">Actions</th>
-                    
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> published </td>
-                    <td> Borders </td>
-                    <td> Perez</td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> published </td>
-                    <td> Borders </td>
-                    <td> Perez</td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> published </td>
-                    <td> Borders </td>
-                    <td> Perez</td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
+                  @foreach ($posts as $post)
+                    <tr>
+                      <th scope="row"> {{ $post->id }} </th>
+                      <td> {{ $post->title }} </td>
+                      <td> {{ $post->status }} </td>
+                      <td> {{ $post->category->name }} </td>
+                      <td> {{ $post->user->f_name }} </td>
+                      <td> {{ $post->created_at->format('j F, Y') }} </td>
+                      <td> {{ $post->updated_at->format('j F, Y') }} </td>
+                      <td class="d-flex justify-content-around" >
+                          <button class="btn btn-warning  "> Edit </button>
+                          <button class="btn btn-danger "> Delete </button>
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
+              {{ $posts->links() }}
         </div>
         
     </div>

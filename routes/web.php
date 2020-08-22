@@ -23,7 +23,7 @@ Auth::routes();
     Root dashboard routes
 */
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/posts', 'PostController@index')->name('posts');
-Route::get('/home/categories', 'CategoryController@index')->name('categories');
-Route::get('/home/authors', 'AuthorController@index')->name('authors');
-Route::get('/home/countries', 'CountryController@index')->name('countries');
+Route::get('/home/{id}/posts', 'PostController@index')->name('posts');
+Route::get('/home/{id}/categories', 'CategoryController@index')->name('categories');
+Route::get('/home/{id}/authors', 'AuthorController@index')->name('authors');
+Route::get('/home/{id}/countries', 'CountryController@index')->name('countries');

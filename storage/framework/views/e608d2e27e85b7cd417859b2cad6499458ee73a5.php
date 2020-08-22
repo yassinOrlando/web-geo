@@ -6,7 +6,7 @@
             <div class="row d-flex justify-content-between">
                 <button class="btn btn-primary "> New post </button>
     
-                <span class="align-baseline "> Total posts: (5) </span>
+                <span class="align-baseline "> Total posts: (<?php echo e(count($posts)); ?>) </span>
     
                 <form class="form-inline my-2 my-lg-0 mr-md-2 ">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -27,51 +27,28 @@
                     <th scope="col">Created at</th>
                     <th scope="col">Updated at</th>
                     <th scope="col">Actions</th>
-                    
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> published </td>
-                    <td> Borders </td>
-                    <td> Perez</td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> published </td>
-                    <td> Borders </td>
-                    <td> Perez</td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td> The most beautiful places in the world </td>
-                    <td> published </td>
-                    <td> Borders </td>
-                    <td> Perez</td>
-                    <td> 05/03/2020 </td>
-                    <td> 07/03/2020 </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
+                  <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                      <th scope="row"> <?php echo e($post->id); ?> </th>
+                      <td> <?php echo e($post->title); ?> </td>
+                      <td> <?php echo e($post->status); ?> </td>
+                      <td> <?php echo e($post->category->name); ?> </td>
+                      <td> <?php echo e($post->user->f_name); ?> </td>
+                      <td> <?php echo e($post->created_at->format('j F, Y')); ?> </td>
+                      <td> <?php echo e($post->updated_at->format('j F, Y')); ?> </td>
+                      <td class="d-flex justify-content-around" >
+                          <button class="btn btn-warning  "> Edit </button>
+                          <button class="btn btn-danger "> Delete </button>
+                      </td>
+                    </tr>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
               </table>
+              <?php echo e($posts->links()); ?>
+
         </div>
         
     </div>

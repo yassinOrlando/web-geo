@@ -96,11 +96,11 @@
                         <div class="card text-white bg-secondary">
                             <div class="card-header text-center">{{ __('OPTIONS') }}</div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home') }}"> Profile </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home/posts') }}"> Posts </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home/categories') }}"> Categories </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home/authors') }}"> Authors </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home/countries') }}"> Countries </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ route('home') }}"> Profile </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ route('posts', ['id' => Auth::user()->id ]) }}"> Posts </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ route('categories', ['id' => Auth::user()->id ]) }}"> Categories </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ route('authors', ['id' => Auth::user()->id ]) }}"> Authors </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ route('countries', ['id' => Auth::user()->id ]) }}"> Countries </a></li>
                             </ul>
                         </div>
                     </div>
