@@ -60,10 +60,14 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     <span class="caret"> {{ Auth::user()->f_name }}</span>
+                                    <img src="{{ Auth::user()->img }}" alt="profile_pic" style="width: 40px; height: 40px; border-radius: 50px;"> 
+                                    <span class="caret"> {{ Auth::user()->f_name }}</span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Administration') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

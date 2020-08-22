@@ -60,10 +60,15 @@
                         <?php else: ?>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     <span class="caret"> <?php echo e(Auth::user()->f_name); ?></span>
+                                    <img src="<?php echo e(Auth::user()->img); ?>" alt="profile_pic" style="width: 40px; height: 40px; border-radius: 50px;"> 
+                                    <span class="caret"> <?php echo e(Auth::user()->f_name); ?></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="<?php echo e(route('home')); ?>">
+                                        <?php echo e(__('Administration')); ?>
+
+                                    </a>
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
