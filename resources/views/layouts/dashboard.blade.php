@@ -99,7 +99,7 @@
                                 <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home') }}"> Profile </a></li>
                                 <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home/posts') }}"> Posts </a></li>
                                 <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home/categories') }}"> Categories </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('#') }}"> Authors </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('/home/authors') }}"> Authors </a></li>
                                 <li class="list-group-item bg-secondary"><a class="text-white" href="{{ url('#') }}"> Countries </a></li>
                             </ul>
                         </div>
