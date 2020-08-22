@@ -4,21 +4,21 @@
 
 @section('content')
     <div class="container col-md-6">
-        <img src="https://picsum.photos/200" alt="profile" class="rounded mx-auto d-block">
+        <img src="{{ Auth::user()->img }} " alt="profile" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
         <div class="md-6">
-            <strong> Role: </strong> rol
+            <strong> Role: </strong> {{ Auth::user()->role }} 
         </div>
         <div>
-            <strong> Name: </strong> Nombre
+            <strong> Name: </strong> {{ Auth::user()->f_name }} 
         </div>
         <div>
-            <strong> Last Name: </strong> Apellido
+            <strong> Last Name: </strong> {{ Auth::user()->last_name }} 
         </div>
         <div>
-            <strong> Email: </strong> Mi Email
+            <strong> Email: </strong> {{ Auth::user()->email }} 
         </div>
         <div>
-            <strong> Password: </strong> Contraseña
+            <strong> Joined: </strong> {{ Auth::user()->created_at }} 
         </div>
     </div>
 @endsection
