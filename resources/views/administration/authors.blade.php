@@ -10,7 +10,8 @@
                     <button class="btn btn-primary">  New author </button>
                 </a> 
 
-                <span> Total authors: (5) </span>
+                <span> Total admins: ({{ $total_admins }}) </span>
+                <span> Total authors: ({{ $total_auths }}) </span>
     
                 <form class="form-inline my-2 my-lg-0 mr-md-2 ">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -33,41 +34,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> Juaner </td>
-                    <td> Perezer </td>
-                    <td> authorert </td>
-                    <td> juan@perezerer.com </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> Juaner </td>
-                    <td> Perezer </td>
-                    <td> authorert </td>
-                    <td> juan@perezerer.com </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> Yass </td>
-                    <td> Vazq </td>
-                    <td> adminitererrr </td>
-                    <td> yassin@orl.com </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
+                  @foreach ($authors as $author)
+                    <tr>
+                      <th scope="row"> {{ $author->id }} </th>
+                      <td> {{ $author->f_name }} </td>
+                      <td> {{ $author->last_name }} </td>
+                      <td> {{ $author->role }} </td>
+                      <td> {{ $author->email }} </td>
+                      <td class="d-flex justify-content-around" >
+                          <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
+                          <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
+              {{ $authors->links() }}
         </div>
         
     </div>

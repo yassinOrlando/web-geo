@@ -8,7 +8,8 @@
                     <button class="btn btn-primary">  New author </button>
                 </a> 
 
-                <span> Total authors: (5) </span>
+                <span> Total admins: (<?php echo e($total_admins); ?>) </span>
+                <span> Total authors: (<?php echo e($total_auths); ?>) </span>
     
                 <form class="form-inline my-2 my-lg-0 mr-md-2 ">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -31,41 +32,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> Juaner </td>
-                    <td> Perezer </td>
-                    <td> authorert </td>
-                    <td> juan@perezerer.com </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> Juaner </td>
-                    <td> Perezer </td>
-                    <td> authorert </td>
-                    <td> juan@perezerer.com </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td> Yass </td>
-                    <td> Vazq </td>
-                    <td> adminitererrr </td>
-                    <td> yassin@orl.com </td>
-                    <td class="d-flex justify-content-around" >
-                        <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                        <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
-                    </td>
-                  </tr>
+                  <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                      <th scope="row"> <?php echo e($author->id); ?> </th>
+                      <td> <?php echo e($author->f_name); ?> </td>
+                      <td> <?php echo e($author->last_name); ?> </td>
+                      <td> <?php echo e($author->role); ?> </td>
+                      <td> <?php echo e($author->email); ?> </td>
+                      <td class="d-flex justify-content-around" >
+                          <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
+                          <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
+                      </td>
+                    </tr>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
               </table>
+              <?php echo e($authors->links()); ?>
+
         </div>
         
     </div>
