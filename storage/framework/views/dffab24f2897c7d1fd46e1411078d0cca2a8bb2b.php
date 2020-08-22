@@ -1,8 +1,6 @@
-@extends('layouts.dashboard')
+<?php $__env->startSection('title', 'COUNTRIES'); ?>
 
-@section('title', 'COUNTRIES')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container col-md-12">
         <div class="container">
             <div class="row d-flex justify-content-between">
@@ -61,4 +59,5 @@
         </div>
         
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.dashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views//administration/countries.blade.php ENDPATH**/ ?>

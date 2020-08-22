@@ -101,7 +101,7 @@
                                 <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home/posts')); ?>"> Posts </a></li>
                                 <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home/categories')); ?>"> Categories </a></li>
                                 <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home/authors')); ?>"> Authors </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('#')); ?>"> Countries </a></li>
+                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(url('/home/countries')); ?>"> Countries </a></li>
                             </ul>
                         </div>
                     </div>
