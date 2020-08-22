@@ -16,7 +16,7 @@
             <strong> Email: </strong> <?php echo e(Auth::user()->email); ?> 
         </div>
         <div>
-            <strong> Joined: </strong> <?php echo e(Auth::user()->created_at); ?> 
+            <strong> Joined: </strong> <?php echo e(Auth::user()->created_at->format('j F, Y')); ?> 
         </div>
     </div>
 <?php $__env->stopSection(); ?>

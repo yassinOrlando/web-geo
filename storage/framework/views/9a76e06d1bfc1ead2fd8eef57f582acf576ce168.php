@@ -27,6 +27,8 @@
                     <th scope="col" class="col-2">Last name</th>
                     <th scope="col">Role</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Updated at</th>
                     <th scope="col">Actions</th>
                     
                   </tr>
@@ -39,18 +41,20 @@
                       <td> <?php echo e($author->last_name); ?> </td>
                       <td> <?php echo e($author->role); ?> </td>
                       <td> <?php echo e($author->email); ?> </td>
+                      <td> <?php echo e($author->created_at->format('j F, Y')); ?> </td>
+                      <td> <?php echo e($author->updated_at->format('j F, Y')); ?> </td>
                       <td class="d-flex justify-content-around" >
-                          <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                          <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
+                          <button class="btn btn-warning"> Edit </button>
+                          <button class="btn btn-danger "> Delete </button>
                       </td>
                     </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
               </table>
-              <?php echo e($authors->links()); ?>
-
+              
         </div>
-        
+        <?php echo e($authors->links()); ?>
+
     </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.dashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views//administration/authors.blade.php ENDPATH**/ ?>

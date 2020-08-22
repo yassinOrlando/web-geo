@@ -18,7 +18,7 @@
             <strong> Email: </strong> {{ Auth::user()->email }} 
         </div>
         <div>
-            <strong> Joined: </strong> {{ Auth::user()->created_at }} 
+            <strong> Joined: </strong> {{ Auth::user()->created_at->format('j F, Y') }} 
         </div>
     </div>
 @endsection

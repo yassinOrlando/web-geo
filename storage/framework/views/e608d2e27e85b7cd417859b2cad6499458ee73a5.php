@@ -47,10 +47,10 @@
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
               </table>
-              <?php echo e($posts->links()); ?>
-
+              
         </div>
-        
+        <?php echo e($posts->links()); ?>
+
     </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.dashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views//administration/posts.blade.php ENDPATH**/ ?>

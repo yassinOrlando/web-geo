@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 </head>
-<body>
+<body class="bg-secondary">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -94,14 +94,14 @@
             
                 <div class="row justify-content-center" >
                     <div class="col-md-2" style="margin-top: 20px">
-                        <div class="card text-white bg-secondary">
+                        <div class="card text-white bg-dark">
                             <div class="card-header text-center"><?php echo e(__('OPTIONS')); ?></div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('home')); ?>"> Profile </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('posts', ['id' => Auth::user()->id ])); ?>"> Posts </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('categories', ['id' => Auth::user()->id ])); ?>"> Categories </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('authors', ['id' => Auth::user()->id ])); ?>"> Authors </a></li>
-                                <li class="list-group-item bg-secondary"><a class="text-white" href="<?php echo e(route('countries', ['id' => Auth::user()->id ])); ?>"> Countries </a></li>
+                                <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('home')); ?>"> Profile </a></li>
+                                <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('posts', ['id' => Auth::user()->id ])); ?>"> Posts </a></li>
+                                <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('categories', ['id' => Auth::user()->id ])); ?>"> Categories </a></li>
+                                <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('authors', ['id' => Auth::user()->id ])); ?>"> Authors </a></li>
+                                <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('countries', ['id' => Auth::user()->id ])); ?>"> Countries </a></li>
                             </ul>
                         </div>
                     </div>
