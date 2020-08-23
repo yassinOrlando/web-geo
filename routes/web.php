@@ -28,7 +28,12 @@ Route::get('/home/{id}/categories', 'CategoryController@index')->name('categorie
 Route::get('/home/{id}/authors', 'AuthorController@index')->name('authors');
 Route::get('/home/{id}/countries', 'CountryController@index')->name('countries');
 
+/*Routes wich go to the form for add content
+*/
+Route::get('forms/{id}/posts/new-post', 'PostController@forms_add')->name('post_form_create');
+
 /*Routes for administration
     Routes for adding content
 */
+Route::post('/home/{id}/posts/added-post', 'PostController@add')->name('post_add');
 Route::post('/home/{id}/categories', 'CategoryController@add')->name('categories_add');//We see the categ and add them in the same file

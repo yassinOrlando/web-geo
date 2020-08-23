@@ -3,16 +3,18 @@
 <?php $__env->startSection('content'); ?>
     <div class="container col-md-12">
         <div class="container">
-            <div class="row d-flex justify-content-between">
-                <button class="btn btn-primary "> New post </button>
+          <div class="row d-flex justify-content-between">
+            <a href="<?php echo e(route('post_form_create', ['id' => Auth::user()->id])); ?>">
+              <button class="btn btn-primary "> New post </button>
+            </a>
     
-                <span class="align-baseline "> Total posts: (<?php echo e($total_posts); ?>) </span>
+            <span class="align-baseline "> Total posts: (<?php echo e($total_posts); ?>) </span>
     
-                <form class="form-inline my-2 my-lg-0 mr-md-2 ">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
+            <form class="form-inline my-2 my-lg-0 mr-md-2 ">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
         </div>
         
         <div style="overflow: scroll">
