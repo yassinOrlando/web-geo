@@ -107,13 +107,6 @@
     <!-- TinyMCE -->
 <script src="https://cdn.tiny.cloud/1/2qrleta2r5guj9v98n5d0o7sjqt579xi3x191wzgajmn1twy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script type="text/javascript">
-    function goBack() {
-        let option = confirm('You are going back, your changes are not going to be saved!')
-        if (option){
-            window.location.href('/resources/views/administration/home.blade.php')
-        }
-    }
-
     tinymce.init({
             selector: '#content',
             //toolbar: "numlist bullist",

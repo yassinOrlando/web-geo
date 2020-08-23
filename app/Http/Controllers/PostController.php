@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -49,9 +50,18 @@ class PostController extends Controller
         $post->user_id = $request->user_id; 
         $post->save();
 
-        $categories = Category::all();
-        return view('/administration/forms_add/add_post', [
-            'categories' => $categories
-            ]);
+        $total_posts = count(Post::get());
+        $posts = Post::orderBy('id', 'desc')
+                        ->paginate(4);
+        $content = Post::where('id', '=', '13')->get();
+        return redirect()->route('posts', ['id' => \Auth::user()->id , 'posts' => $posts, 'total_posts' => $total_posts, 'content' => $content]);
+    }
+
+    public function delete($post_id){
+        $post = Post::find($post_id);
+        $post->delete();
+
+        return redirect()->route('posts', ['id' => \Auth::user()->id]);
+        
     }
 }

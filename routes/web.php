@@ -37,3 +37,8 @@ Route::get('forms/{id}/posts/new-post', 'PostController@forms_add')->name('post_
 */
 Route::post('/home/{id}/posts/added-post', 'PostController@add')->name('post_add');
 Route::post('/home/{id}/categories', 'CategoryController@add')->name('categories_add');//We see the categ and add them in the same file
+
+/*Routes for administration
+    Routes for deleting content
+*/
+Route::get('users/{id}/posts/delete', 'PostController@delete')->name('post_delete');

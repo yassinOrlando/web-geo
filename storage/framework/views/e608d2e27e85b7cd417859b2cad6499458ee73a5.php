@@ -42,8 +42,12 @@
                       <td> <?php echo e($post->created_at->format('j F, Y')); ?> </td>
                       <td> <?php echo e($post->updated_at->format('j F, Y')); ?> </td>
                       <td class="d-flex justify-content-around" >
+                        
                           <button class="btn btn-warning  "> Edit </button>
+                        
+                        <a href="<?php echo e(route('post_delete', ['id' => Auth::user()->id , 'id' => $post->id ])); ?>" onclick="return confirm('Are you sure you want to delete this post?')">
                           <button class="btn btn-danger "> Delete </button>
+                        </a>
                       </td>
                     </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

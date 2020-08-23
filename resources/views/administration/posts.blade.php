@@ -44,8 +44,12 @@
                       <td> {{ $post->created_at->format('j F, Y') }} </td>
                       <td> {{ $post->updated_at->format('j F, Y') }} </td>
                       <td class="d-flex justify-content-around" >
+                        
                           <button class="btn btn-warning  "> Edit </button>
+                        
+                        <a href="{{ route('post_delete', ['id' => Auth::user()->id , 'id' => $post->id ]) }}" onclick="return confirm('Are you sure you want to delete this post?')">
                           <button class="btn btn-danger "> Delete </button>
+                        </a>
                       </td>
                     </tr>
                   @endforeach
