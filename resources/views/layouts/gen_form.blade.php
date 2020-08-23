@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-secondary">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -101,5 +101,16 @@
             </div>
         </main>
     </div>
+
+    <!-- TinyMCE -->
+<script src="https://cdn.tiny.cloud/1/2qrleta2r5guj9v98n5d0o7sjqt579xi3x191wzgajmn1twy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script type="text/javascript">
+    tinymce.init({
+            selector: '#content',
+            //toolbar: "numlist bullist",
+            plugins: 'advlist lists link image media imagetools save spellchecker preview wordcount visualchars pagebreak emoticons',
+            height: 600
+        });
+</script>
 </body>
 </html>

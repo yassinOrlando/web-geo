@@ -28,7 +28,8 @@ class PostController extends Controller
         $total_posts = count(Post::get());
         $posts = Post::orderBy('id', 'desc')
                         ->paginate(4);
-        return view('/administration/posts', ['posts' => $posts, 'total_posts' => $total_posts]);
+        $content = Post::where('id', '=', '13')->get();
+        return view('/administration/posts', ['posts' => $posts, 'total_posts' => $total_posts, 'content' => $content]);
     }
 
     public function forms_add(){
@@ -48,9 +49,9 @@ class PostController extends Controller
         $post->user_id = $request->user_id; 
         $post->save();
 
-        $total_posts = count(Post::get());
-        $posts = Post::orderBy('id', 'desc')
-                        ->paginate(4);
-        return view('/administration/posts', ['posts' => $posts, 'total_posts' => $total_posts]);
+        $categories = Category::all();
+        return view('/administration/forms_add/add_post', [
+            'categories' => $categories
+            ]);
     }
 }

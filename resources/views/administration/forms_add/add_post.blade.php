@@ -3,10 +3,10 @@
 @section('title', 'NEW POST')
 
 @section('content')
-<form method="POST" action="{{ route('post_add', ['id' => Auth::user()->id]) }}">
+<form method="POST" action="{{ route('post_add', ['id' => Auth::user()->id]) }}" class="col-md-12">
     @csrf
 
-    <div class="form-group row d-flex justify-content-around">
+    <div class="form-group row d-flex justify-content-around ">
         <input id="user_id" type="text" class="form-control col-md-5" value="{{ Auth::user()->id }}" name="user_id" hidden>
         
 
@@ -65,22 +65,23 @@
         <textarea name="content" id="content" class="col-md-12" cols="30" rows="10"></textarea>
     </div>
 
+    <br>
+
     <div class="col-md-6">
-        <button class="btn btn-danger" id="back" onclick="goBack()">
-            {{ __('Cancel') }}
-        </button>
+        <a href="{{ route('home') }}" onclick="return confirm('Your canges are not goin to be saved')">
+            <button type="button" class="btn btn-danger" id="back" >
+                {{ __('Cancel') }}
+            </button>
+        </a>
+
         <button type="submit" class="btn btn-primary">
             {{ __('Add post') }}
         </button>
     </div>
 </form>
+
+
 @endsection
 
-<script>
-    function goBack() {
-        let option = confirm('You are going back, your changes are not going to be saved!')
-        if (option){
-            window.history.back()
-        }
-    }
-</script>
+
+

@@ -1,10 +1,10 @@
 <?php $__env->startSection('title', 'NEW POST'); ?>
 
 <?php $__env->startSection('content'); ?>
-<form method="POST" action="<?php echo e(route('post_add', ['id' => Auth::user()->id])); ?>">
+<form method="POST" action="<?php echo e(route('post_add', ['id' => Auth::user()->id])); ?>" class="col-md-12">
     <?php echo csrf_field(); ?>
 
-    <div class="form-group row d-flex justify-content-around">
+    <div class="form-group row d-flex justify-content-around ">
         <input id="user_id" type="text" class="form-control col-md-5" value="<?php echo e(Auth::user()->id); ?>" name="user_id" hidden>
         
 
@@ -91,25 +91,27 @@ unset($__errorArgs, $__bag); ?>
         <textarea name="content" id="content" class="col-md-12" cols="30" rows="10"></textarea>
     </div>
 
-    <div class="col-md-6">
-        <button class="btn btn-danger" id="back" onclick="goBack()">
-            <?php echo e(__('Cancel')); ?>
+    <br>
 
-        </button>
+    <div class="col-md-6">
+        <a href="<?php echo e(route('home')); ?>" onclick="return confirm('Your canges are not goin to be saved')">
+            <button type="button" class="btn btn-danger" id="back" >
+                <?php echo e(__('Cancel')); ?>
+
+            </button>
+        </a>
+
         <button type="submit" class="btn btn-primary">
             <?php echo e(__('Add post')); ?>
 
         </button>
     </div>
 </form>
+
+
 <?php $__env->stopSection(); ?>
 
-<script>
-    function goBack() {
-        let option = confirm('You are going back, your changes are not going to be saved!')
-        if (option){
-            window.history.back()
-        }
-    }
-</script>
+
+
+
 <?php echo $__env->make('layouts.gen_form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views//administration/forms_add/add_post.blade.php ENDPATH**/ ?>

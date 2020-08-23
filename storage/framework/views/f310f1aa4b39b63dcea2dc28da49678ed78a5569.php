@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 <head>
     <meta charset="utf-8">
@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 </head>
-<body>
+<body class="bg-secondary">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -103,5 +103,23 @@
             </div>
         </main>
     </div>
+
+    <!-- TinyMCE -->
+<script src="https://cdn.tiny.cloud/1/2qrleta2r5guj9v98n5d0o7sjqt579xi3x191wzgajmn1twy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script type="text/javascript">
+    function goBack() {
+        let option = confirm('You are going back, your changes are not going to be saved!')
+        if (option){
+            window.location.href('/resources/views/administration/home.blade.php')
+        }
+    }
+
+    tinymce.init({
+            selector: '#content',
+            //toolbar: "numlist bullist",
+            plugins: 'advlist lists link image media imagetools save spellchecker preview wordcount visualchars pagebreak emoticons',
+            height: 600
+        });
+</script>
 </body>
 </html><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views/layouts/gen_form.blade.php ENDPATH**/ ?>
