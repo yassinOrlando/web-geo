@@ -62,7 +62,7 @@ class CategoryController extends Controller
 
     public function update(Request $req){
         $validator = Validator::make($req->all(), [
-            'name' => 'required|string|max:255'
+            'name' => ['required','string','max:255']
         ]);
 
         $category = Category::find($req->id);

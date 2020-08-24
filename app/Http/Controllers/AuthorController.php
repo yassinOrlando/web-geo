@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class AuthorController extends Controller
 {
@@ -53,7 +52,6 @@ class AuthorController extends Controller
 
             return redirect()->route('authors', ['id' => \Auth::user()->id])->with('success', 'done');
         }else{
-            Log::alert('You cant delete this user');
             return redirect()->route('authors', ['id' => \Auth::user()->id])->with('alert','hello');
         }
 
@@ -61,8 +59,27 @@ class AuthorController extends Controller
 
     public function author_edit($id){
         $author = User::find($id);
-        
-
         return view('administration/forms_edit/user_edit', ['author' => $author]);
+    }
+
+    public function update(Request $req){
+        $validator = Validator::make($req->all(), [
+            'role' => ['required','string','max:50'],
+            'f_name' => ['required','string','max:100'],
+            'last_name' => ['required','string','max:10'],
+            'email' => ['required', 'string','email','max:100','unique:users'],
+            'img' => ['required','string','max:255'],
+        ]);
+
+        $auth = User::find($req->id);
+        $auth->role = $req->role;
+        $auth->f_name = $req->f_name;
+        $auth->last_name = $req->last_name;
+        $auth->email = $req->email;
+        $auth->img = $req->img;
+        $auth->save();
+
+        return redirect()->route('author_edit', ['author_id' => $req->id ])->with('message', 'Changes saved');
+
     }
 }

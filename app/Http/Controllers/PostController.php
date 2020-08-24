@@ -76,7 +76,7 @@ class PostController extends Controller
 
     public function update(Request $req){
         $validator = Validator::make($req->all(), [
-            'title' => 'required|string|max:255'
+            'title' => ['required','string','max:255']
         ]);
 
         $post = Post::find($req->id);

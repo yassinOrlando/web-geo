@@ -50,7 +50,7 @@
                             <button class="btn btn-warning  "> Edit </button>
                           </a>
                           <a href="{{ route('author_delete', ['auth_id' => $author->id]) }}"
-                            onclick="return confirm('Are you sure yo want to delete this user? \n All related post will be deleted too!')"
+                            onclick="return confirm('Are you sure you want to delete this user? \n All related posts will be deleted too!')"
                             >
                             <button class="btn btn-danger "> Delete </button>
                           </a>
