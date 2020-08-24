@@ -47,7 +47,11 @@
                       <td> {{ $author->updated_at->format('j F, Y') }} </td>
                       <td class="d-flex justify-content-around" >
                           <button class="btn btn-warning"> Edit </button>
-                          <button class="btn btn-danger "> Delete </button>
+                          <a href="{{ route('author_delete', ['auth_id' => $author->id]) }}"
+                            onclick="return confirm('Are you sure yo want to delete this user? \n All related post will be deleted too!')"
+                            >
+                            <button class="btn btn-danger "> Delete </button>
+                          </a>
                       </td>
                     </tr>
                   @endforeach

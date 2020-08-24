@@ -113,6 +113,7 @@
                         <div class="card">
                             <div class="card-header text-center">@yield('title')</div>
                             <div class="card-body justify-content-center">
+                                
                                 @yield('content')
                             </div>
                         </div>
@@ -121,5 +122,15 @@
             </div>
         </main>
     </div>
+    @if(session()->has('alert'))
+        <script>
+            alert('You can not delete this user');
+        </script>
+    @endif
+    @if (session()->has('success'))
+        <script>
+            alert('Process executed successfully!')    
+        </script>
+    @endif
 </body>
 </html>

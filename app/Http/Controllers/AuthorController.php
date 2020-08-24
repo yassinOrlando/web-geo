@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AuthorController extends Controller
 {
@@ -38,5 +40,22 @@ class AuthorController extends Controller
             'total_auths' => $total_auths,
             'total_admins' => $total_admins
             ]);
+    }
+
+    public function delete($user_id){
+        $this_user = \Auth::user()->id;
+
+        if($this_user != $user_id && $user_id != 14 ){ //14 is the number of the super admin
+            DB::table('posts')->where('user_id', $user_id)->delete();
+
+            $user = User::find($user_id);
+            $user->delete();
+
+            return redirect()->route('authors', ['id' => \Auth::user()->id])->with('success', 'done');
+        }else{
+            Log::alert('You cant delete this user');
+            return redirect()->route('authors', ['id' => \Auth::user()->id])->with('alert','hello');
+        }
+
     }
 }

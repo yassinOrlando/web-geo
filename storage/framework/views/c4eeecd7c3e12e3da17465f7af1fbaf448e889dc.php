@@ -115,6 +115,7 @@
                         <div class="card">
                             <div class="card-header text-center"><?php echo $__env->yieldContent('title'); ?></div>
                             <div class="card-body justify-content-center">
+                                
                                 <?php echo $__env->yieldContent('content'); ?>
                             </div>
                         </div>
@@ -123,5 +124,15 @@
             </div>
         </main>
     </div>
+    <?php if(session()->has('alert')): ?>
+        <script>
+            alert('You can not delete this user');
+        </script>
+    <?php endif; ?>
+    <?php if(session()->has('success')): ?>
+        <script>
+            alert('Process executed successfully!')    
+        </script>
+    <?php endif; ?>
 </body>
 </html><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views/layouts/dashboard.blade.php ENDPATH**/ ?>

@@ -29,8 +29,7 @@ class PostController extends Controller
         $total_posts = count(Post::get());
         $posts = Post::orderBy('id', 'desc')
                         ->paginate(4);
-        $content = Post::where('id', '=', '13')->get();
-        return view('/administration/posts', ['posts' => $posts, 'total_posts' => $total_posts, 'content' => $content]);
+        return view('/administration/posts', ['posts' => $posts, 'total_posts' => $total_posts]);
     }
 
     public function forms_add(){
@@ -54,14 +53,14 @@ class PostController extends Controller
         $posts = Post::orderBy('id', 'desc')
                         ->paginate(4);
         $content = Post::where('id', '=', '13')->get();
-        return redirect()->route('posts', ['id' => \Auth::user()->id , 'posts' => $posts, 'total_posts' => $total_posts, 'content' => $content]);
+        return redirect()->route('posts', ['id' => \Auth::user()->id , 'posts' => $posts, 'total_posts' => $total_posts, 'content' => $content])->with('success', 'done');
     }
 
     public function delete($post_id){
         $post = Post::find($post_id);
         $post->delete();
 
-        return redirect()->route('posts', ['id' => \Auth::user()->id]);
+        return redirect()->route('posts', ['id' => \Auth::user()->id])->with('success', 'done');
         
     }
 }

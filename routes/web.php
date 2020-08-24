@@ -41,4 +41,6 @@ Route::post('/home/{id}/categories', 'CategoryController@add')->name('categories
 /*Routes for administration
     Routes for deleting content
 */
-Route::get('users/{id}/posts/delete', 'PostController@delete')->name('post_delete');
+Route::get('users/posts/delete/{post_id}', 'PostController@delete')->name('post_delete');
+Route::get('users/categories/delete/{cat_id}', 'CategoryController@delete')->name('category_delete');
+Route::get('users/authors/delete/{auth_id}', 'AuthorController@delete')->name('author_delete');

@@ -45,7 +45,11 @@
                       <td> <?php echo e($author->updated_at->format('j F, Y')); ?> </td>
                       <td class="d-flex justify-content-around" >
                           <button class="btn btn-warning"> Edit </button>
-                          <button class="btn btn-danger "> Delete </button>
+                          <a href="<?php echo e(route('author_delete', ['auth_id' => $author->id])); ?>"
+                            onclick="return confirm('Are you sure yo want to delete this user? \n All related post will be deleted too!')"
+                            >
+                            <button class="btn btn-danger "> Delete </button>
+                          </a>
                       </td>
                     </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

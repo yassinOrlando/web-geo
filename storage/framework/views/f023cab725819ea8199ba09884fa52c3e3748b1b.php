@@ -41,7 +41,13 @@
                       <td> <?php echo e($category->updated_at->format('j F, Y')); ?> </td>
                       <td class="d-flex justify-content-around" >
                           <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
-                          <button class="btn btn-danger col-sm-12 col-md-5"> Delete </button>
+                          <a href="<?php echo e(route('category_delete', ['cat_id' => $category->id])); ?>" 
+                            class="col-sm-12 col-md-5"
+                            onclick="
+                            return confirm('Are you sure you want to delete this category? All the related post will be deleted too!')
+                            ">
+                            <button class="btn btn-danger "> Delete </button>
+                          </a>
                       </td>
                     </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

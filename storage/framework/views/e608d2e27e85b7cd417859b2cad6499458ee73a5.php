@@ -45,7 +45,7 @@
                         
                           <button class="btn btn-warning  "> Edit </button>
                         
-                        <a href="<?php echo e(route('post_delete', ['id' => Auth::user()->id , 'id' => $post->id ])); ?>" onclick="return confirm('Are you sure you want to delete this post?')">
+                        <a href="<?php echo e(route('post_delete', ['post_id' => $post->id ])); ?>" onclick="return confirm('Are you sure you want to delete this post?')">
                           <button class="btn btn-danger "> Delete </button>
                         </a>
                       </td>
