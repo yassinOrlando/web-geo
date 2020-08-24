@@ -42,9 +42,9 @@
                       <td> <?php echo e($post->created_at->format('j F, Y')); ?> </td>
                       <td> <?php echo e($post->updated_at->format('j F, Y')); ?> </td>
                       <td class="d-flex justify-content-around" >
-                        
+                        <a href="<?php echo e(route('post_edit', ['post_id' => $post->id, 'id' => $post->id ])); ?>" >
                           <button class="btn btn-warning  "> Edit </button>
-                        
+                        </a>
                         <a href="<?php echo e(route('post_delete', ['post_id' => $post->id ])); ?>" onclick="return confirm('Are you sure you want to delete this post?')">
                           <button class="btn btn-danger "> Delete </button>
                         </a>

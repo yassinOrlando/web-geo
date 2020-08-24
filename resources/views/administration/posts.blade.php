@@ -44,9 +44,9 @@
                       <td> {{ $post->created_at->format('j F, Y') }} </td>
                       <td> {{ $post->updated_at->format('j F, Y') }} </td>
                       <td class="d-flex justify-content-around" >
-                        
+                        <a href="{{ route('post_edit', ['post_id' => $post->id, 'id' => $post->id ]) }}" >
                           <button class="btn btn-warning  "> Edit </button>
-                        
+                        </a>
                         <a href="{{ route('post_delete', ['post_id' => $post->id ]) }}" onclick="return confirm('Are you sure you want to delete this post?')">
                           <button class="btn btn-danger "> Delete </button>
                         </a>

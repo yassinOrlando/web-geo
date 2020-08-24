@@ -44,3 +44,13 @@ Route::post('/home/{id}/categories', 'CategoryController@add')->name('categories
 Route::get('users/posts/delete/{post_id}', 'PostController@delete')->name('post_delete');
 Route::get('users/categories/delete/{cat_id}', 'CategoryController@delete')->name('category_delete');
 Route::get('users/authors/delete/{auth_id}', 'AuthorController@delete')->name('author_delete');
+
+/*Routes to the forms for editing content
+*/
+Route::get('users/posts/edit_post/{post_id}', 'PostController@form_edit')->name('post_edit');
+Route::get('users/category/edit_category/{cat_id}', 'CategoryController@cat_edit')->name('cat_edit');
+
+/*Routes to the forms for updating content
+*/
+Route::put('users/posts/save_edit/{post_id}', 'PostController@update')->name('post_update');
+Route::put('users/categories/save_edit/{cat_id}', 'CategoryController@update')->name('cat_update');

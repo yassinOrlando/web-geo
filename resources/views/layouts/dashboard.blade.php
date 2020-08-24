@@ -113,7 +113,22 @@
                         <div class="card">
                             <div class="card-header text-center">@yield('title')</div>
                             <div class="card-body justify-content-center">
-                                
+                                @if (session()->has('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ __('Process executed successfully') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>                                    
+                                @endif
+                                @if (session()->has('alert'))
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        {{ __('You can not delete this user') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>                                    
+                                @endif
                                 @yield('content')
                             </div>
                         </div>
@@ -122,15 +137,5 @@
             </div>
         </main>
     </div>
-    @if(session()->has('alert'))
-        <script>
-            alert('You can not delete this user');
-        </script>
-    @endif
-    @if (session()->has('success'))
-        <script>
-            alert('Process executed successfully!')    
-        </script>
-    @endif
 </body>
 </html>

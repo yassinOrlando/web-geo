@@ -115,7 +115,24 @@
                         <div class="card">
                             <div class="card-header text-center"><?php echo $__env->yieldContent('title'); ?></div>
                             <div class="card-body justify-content-center">
-                                
+                                <?php if(session()->has('success')): ?>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <?php echo e(__('Process executed successfully')); ?>
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>                                    
+                                <?php endif; ?>
+                                <?php if(session()->has('alert')): ?>
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <?php echo e(__('You can not delete this user')); ?>
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>                                    
+                                <?php endif; ?>
                                 <?php echo $__env->yieldContent('content'); ?>
                             </div>
                         </div>
@@ -124,15 +141,5 @@
             </div>
         </main>
     </div>
-    <?php if(session()->has('alert')): ?>
-        <script>
-            alert('You can not delete this user');
-        </script>
-    <?php endif; ?>
-    <?php if(session()->has('success')): ?>
-        <script>
-            alert('Process executed successfully!')    
-        </script>
-    <?php endif; ?>
 </body>
 </html><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views/layouts/dashboard.blade.php ENDPATH**/ ?>

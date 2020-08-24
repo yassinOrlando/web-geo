@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -62,5 +62,31 @@ class PostController extends Controller
 
         return redirect()->route('posts', ['id' => \Auth::user()->id])->with('success', 'done');
         
+    }
+
+    public function form_edit($id){
+        $categories = Category::all();
+        $post_data = Post::find($id);
+
+        return view('administration/forms_edit/post_edit', [
+            'categories' => $categories,
+            'post' => $post_data
+        ]);
+    }
+
+    public function update(Request $req){
+        $validator = Validator::make($req->all(), [
+            'title' => 'required|string|max:255'
+        ]);
+
+        $post = Post::find($req->id);
+        $post->status = $req->status;
+        $post->category_id = $req->category_id;
+        $post->img = $req->img;
+        $post->title = $req->title;
+        $post->content = $req->content;
+        $post->save();
+
+        return redirect()->route('post_edit', ['post_id' => $req->id ])->with('message', 'Changes saved');
     }
 }

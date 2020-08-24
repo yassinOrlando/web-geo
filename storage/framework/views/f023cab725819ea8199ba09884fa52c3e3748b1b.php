@@ -40,7 +40,9 @@
                       <td> <?php echo e($category->created_at->format('j F, Y')); ?> </td>
                       <td> <?php echo e($category->updated_at->format('j F, Y')); ?> </td>
                       <td class="d-flex justify-content-around" >
-                          <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
+                          <a href="<?php echo e(route('cat_edit', ['cat_id' => $category->id, 'id' => $category->id ])); ?>" >
+                            <button class="btn btn-warning  "> Edit </button>
+                          </a>
                           <a href="<?php echo e(route('category_delete', ['cat_id' => $category->id])); ?>" 
                             class="col-sm-12 col-md-5"
                             onclick="

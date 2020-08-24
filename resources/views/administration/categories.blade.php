@@ -42,7 +42,9 @@
                       <td> {{ $category->created_at->format('j F, Y') }} </td>
                       <td> {{ $category->updated_at->format('j F, Y') }} </td>
                       <td class="d-flex justify-content-around" >
-                          <button class="btn btn-warning col-sm-12 col-md-5"> Edit </button>
+                          <a href="{{ route('cat_edit', ['cat_id' => $category->id, 'id' => $category->id ]) }}" >
+                            <button class="btn btn-warning  "> Edit </button>
+                          </a>
                           <a href="{{ route('category_delete', ['cat_id' => $category->id]) }}" 
                             class="col-sm-12 col-md-5"
                             onclick="

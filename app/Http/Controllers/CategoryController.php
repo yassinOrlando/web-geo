@@ -51,4 +51,17 @@ class CategoryController extends Controller
         return redirect()->route('categories', ['id' => \Auth::user()->id])->with('success', 'done');
     }
 
+    public function cat_edit($id){
+        $cat_data = Category::find($id);
+
+        return view('administration/forms_edit/cat_edit', [
+            'cat_id' => $cat_data->id,
+            'category' => $cat_data
+        ]);
+    }
+
+    public function update(){
+        echo 'it works';
+    }
+
 }
