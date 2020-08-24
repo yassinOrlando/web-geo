@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -60,8 +60,16 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function update(){
-        echo 'it works';
+    public function update(Request $req){
+        $validator = Validator::make($req->all(), [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $category = Category::find($req->id);
+        $category->name = $req->name;
+        $category->save();
+
+        return redirect()->route('cat_edit', ['cat_id' => $req->id])->with('success', 'Changes saved');
     }
 
 }

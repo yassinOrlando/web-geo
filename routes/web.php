@@ -49,6 +49,7 @@ Route::get('users/authors/delete/{auth_id}', 'AuthorController@delete')->name('a
 */
 Route::get('users/posts/edit_post/{post_id}', 'PostController@form_edit')->name('post_edit');
 Route::get('users/category/edit_category/{cat_id}', 'CategoryController@cat_edit')->name('cat_edit');
+Route::get('users/authors/edit_author/{author_id}', 'AuthorController@author_edit')->name('author_edit');
 
 /*Routes to the forms for updating content
 */

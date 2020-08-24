@@ -46,7 +46,9 @@
                       <td> {{ $author->created_at->format('j F, Y') }} </td>
                       <td> {{ $author->updated_at->format('j F, Y') }} </td>
                       <td class="d-flex justify-content-around" >
-                          <button class="btn btn-warning"> Edit </button>
+                          <a href="{{ route('author_edit', ['author_id' => $author->id, 'id' => $author->id ]) }}" >
+                            <button class="btn btn-warning  "> Edit </button>
+                          </a>
                           <a href="{{ route('author_delete', ['auth_id' => $author->id]) }}"
                             onclick="return confirm('Are you sure yo want to delete this user? \n All related post will be deleted too!')"
                             >

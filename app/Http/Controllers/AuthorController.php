@@ -58,4 +58,11 @@ class AuthorController extends Controller
         }
 
     }
+
+    public function author_edit($id){
+        $author = User::find($id);
+        
+
+        return view('administration/forms_edit/user_edit', ['author' => $author]);
+    }
 }

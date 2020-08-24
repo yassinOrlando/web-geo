@@ -38,7 +38,7 @@
     <br>
 
     <div class="col-md-6">
-        <a href="{{ route('home') }}" onclick="return confirm('Your canges are not goin to be saved')">
+        <a href="{{ route('home') }}" onclick="return confirm('Your changes are not going to be saved')">
             <button type="button" class="btn btn-danger" id="back">
                 {{ __('Cancel') }}
             </button>
