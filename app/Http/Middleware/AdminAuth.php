@@ -15,8 +15,6 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
-        //$user = User::find(\Auth::user()->id);
-
         
         if ($request->user()->role == 'author') {
             return redirect()->route('home');
