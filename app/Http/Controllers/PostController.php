@@ -78,7 +78,8 @@ class PostController extends Controller
 
     public function form_edit($id){
         $user = User::find(\Auth::user()->id);
-        if ($user->user_id == $id || $user->role == 'admin') {
+        $post = Post::find($id);
+        if ($post->user_id == $user->id || $user->role == 'admin') {
             $categories = Category::all();
             $post_data = Post::find($id);
 
