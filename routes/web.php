@@ -73,3 +73,6 @@ Route::middleware([AdminAuth::class])->group(function () {
 */
 Route::get('users/search/post/{research?}', 'PostController@search')->name('search_post');
 Route::get('users/search/author/{research?}', 'AuthorController@search')->name('search_author');
+Route::middleware([AdminAuth::class])->group(function () {
+    Route::get('users/search/category', 'CategoryController@search')->name('search_category');
+});

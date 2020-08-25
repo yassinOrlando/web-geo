@@ -13,6 +13,7 @@
       <span class="align-baseline ">  Posts found: ({{ count($authors) }}) </span>
 
       <form class="form-inline my-2 my-lg-0 mr-md-2 " action="{{ route('search_author') }}">
+        @csrf
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="research">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>

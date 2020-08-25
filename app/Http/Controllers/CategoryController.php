@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -74,6 +75,19 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()->route('cat_edit', ['cat_id' => $req->id])->with('success', 'Changes saved');
+    }
+
+    public function search(Request $research){
+
+        $categories = Category::where('id', 'like', '%'.$research->input('research').'%')
+                ->orWhere('name', 'like', '%'.$research->input('research').'%')
+                ->paginate(1);
+        
+
+        return view('administration/search_templates/found_cat', [
+            'categories' => $categories,
+        ]);
+
     }
 
 }

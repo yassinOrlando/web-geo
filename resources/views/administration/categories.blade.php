@@ -8,15 +8,16 @@
             <div class="row d-flex justify-content-between">
                 <span> Total categories: ({{ $total_cats }}) </span>
 
-                <form class="form-inline my-2 my-lg-0 mr-md-2 " action=" {{ route('categories_add', ['id' => Auth::user()->id]) }} " method="POST">
+                <form method="POST" class="form-inline my-2 my-lg-0 mr-md-2 " action=" {{ route('categories_add', ['id' => Auth::user()->id]) }} " method="POST">
                   @csrf
                   <label for="name" class="mr-sm-2"> New category: </label>
                   <input name="name" class="form-control mr-sm-2" type="text" placeholder="Category name" aria-label="Search">
                   <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"> Add </button>
                 </form>
     
-                <form class="form-inline my-2 my-lg-0 mr-md-2 ">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form method="GET" class="form-inline my-2 my-lg-0 mr-md-2 " action="{{ route('search_category') }}">
+                  @csrf
+                  <input class="form-control mr-sm-2" type="search" name="research" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
