@@ -26,7 +26,7 @@
         <div class="col-md-3">
             <label for="status" class=" col-form-label text-md-left">{{ __('Status') }}</label>
             <select name="status" id="status">
-                <option value="draft"> Draft </option>
+                <option value="draft" selected> Draft </option>
                 <option value="published"> Published </option>
             </select>
         </div>

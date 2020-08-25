@@ -102,9 +102,12 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item bg-dark"><a class="text-white" href="{{ route('home') }}"> Profile </a></li>
                                 <li class="list-group-item bg-dark"><a class="text-white" href="{{ route('posts', ['id' => Auth::user()->id ]) }}"> Posts </a></li>
-                                <li class="list-group-item bg-dark"><a class="text-white" href="{{ route('categories', ['id' => Auth::user()->id ]) }}"> Categories </a></li>
                                 <li class="list-group-item bg-dark"><a class="text-white" href="{{ route('authors', ['id' => Auth::user()->id ]) }}"> Authors </a></li>
-                                <li class="list-group-item bg-dark"><a class="text-white" href="{{ route('countries', ['id' => Auth::user()->id ]) }}"> Countries </a></li>
+                                {{-- j --}}
+                                @if (Auth::user()->role == 'admin')
+                                    <li class="list-group-item bg-dark"><a class="text-white" href="{{ route('categories', ['id' => Auth::user()->id ]) }}"> Categories </a></li>
+                                    <li class="list-group-item bg-dark"><a class="text-white" href="{{ route('countries', ['id' => Auth::user()->id ]) }}"> Countries </a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -119,11 +122,17 @@
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                    </div>                                    
-                                @endif
-                                @if (session()->has('alert'))
+                                    </div>  
+                                @elseif (session()->has('alert'))
                                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                         {{ __('You can not delete this user') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>     
+                                @elseif (session()->has('alert-edit'))
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        {{ __('You can not edit this user') }}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>

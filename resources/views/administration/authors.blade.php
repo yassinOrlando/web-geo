@@ -6,10 +6,11 @@
     <div class="container col-md-12">
         <div class="container">
             <div class="row d-flex justify-content-between">
+              @if (Auth::user()->role == 'admin')
                 <a class="text-white" href="{{ url('/register') }}">
                     <button class="btn btn-primary">  New author </button>
                 </a> 
-
+              @endif
                 <span> Total admins: ({{ $total_admins }}) </span>
                 <span> Total authors: ({{ $total_auths }}) </span>
     

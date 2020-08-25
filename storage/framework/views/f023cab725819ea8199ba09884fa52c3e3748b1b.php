@@ -46,7 +46,7 @@
                           <a href="<?php echo e(route('category_delete', ['cat_id' => $category->id])); ?>" 
                             class="col-sm-12 col-md-5"
                             onclick="
-                            return confirm('Are you sure you want to delete this category? All the related post will be deleted too!')
+                            return confirm('Are you sure you want to delete this category? \n All related posts will be deleted too!')
                             ">
                             <button class="btn btn-danger "> Delete </button>
                           </a>

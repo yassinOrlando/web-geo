@@ -104,9 +104,12 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('home')); ?>"> Profile </a></li>
                                 <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('posts', ['id' => Auth::user()->id ])); ?>"> Posts </a></li>
-                                <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('categories', ['id' => Auth::user()->id ])); ?>"> Categories </a></li>
                                 <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('authors', ['id' => Auth::user()->id ])); ?>"> Authors </a></li>
-                                <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('countries', ['id' => Auth::user()->id ])); ?>"> Countries </a></li>
+                                
+                                <?php if(Auth::user()->role == 'admin'): ?>
+                                    <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('categories', ['id' => Auth::user()->id ])); ?>"> Categories </a></li>
+                                    <li class="list-group-item bg-dark"><a class="text-white" href="<?php echo e(route('countries', ['id' => Auth::user()->id ])); ?>"> Countries </a></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -122,11 +125,18 @@
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                    </div>                                    
-                                <?php endif; ?>
-                                <?php if(session()->has('alert')): ?>
+                                    </div>  
+                                <?php elseif(session()->has('alert')): ?>
                                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                         <?php echo e(__('You can not delete this user')); ?>
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>     
+                                <?php elseif(session()->has('alert-edit')): ?>
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <?php echo e(__('You can not edit this user')); ?>
 
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>

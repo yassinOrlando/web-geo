@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class AuthorController extends Controller
@@ -42,9 +43,12 @@ class AuthorController extends Controller
     }
 
     public function delete($user_id){
-        $this_user = \Auth::user()->id;
+        $this_user = User::find(\Auth::user()->id);
 
-        if($this_user != $user_id && $user_id != 14 ){ //14 is the number of the super admin
+        if($this_user->role == 'author'){
+            return redirect()->route('authors', ['id' => \Auth::user()->id])->with('alert','hello');
+        }
+        elseif($this_user->id != $user_id && $user_id != 14 ){ //14 is the number of the super admin
             DB::table('posts')->where('user_id', $user_id)->delete();
 
             $user = User::find($user_id);
@@ -58,8 +62,15 @@ class AuthorController extends Controller
     }
 
     public function author_edit($id){
-        $author = User::find($id);
-        return view('administration/forms_edit/user_edit', ['author' => $author]);
+        $user = User::find(\Auth::user()->id);
+
+        if (($user->id == $id) || ($user->role == 'admin' && $id != 14) ) {
+            $author = User::find($id);
+            return view('administration/forms_edit/user_edit', ['author' => $author]);
+        } else {
+            return redirect()->route('authors', ['id' => \Auth::user()->id])->with('alert-edit','hello');
+        }
+        
     }
 
     public function update(Request $req){

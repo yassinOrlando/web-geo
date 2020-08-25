@@ -29,10 +29,17 @@ class PostController extends Controller
         $total_posts = count(Post::get());
         $posts = Post::orderBy('id', 'desc')
                         ->paginate(4);
-        return view('/administration/posts', ['posts' => $posts, 'total_posts' => $total_posts]);
+
+        $personal_posts = count(Post::where('user_id', '=', \Auth::user()->id)->get());
+        return view('/administration/posts', [
+            'posts' => $posts, 
+            'total_posts' => $total_posts,
+            'personal_posts' => $personal_posts
+            ]);
     }
 
     public function forms_add(){
+
         $categories = Category::all();
         return view('/administration/forms_add/add_post', [
             'categories' => $categories
@@ -40,6 +47,10 @@ class PostController extends Controller
     }
 
     public function add(Request $request){
+        $validator = Validator::make($request->all(), [
+            'title' => ['required','string','max:255']
+        ]);
+
         $post = new Post();
         $post->img = $request->img;
         $post->status = $request->status;

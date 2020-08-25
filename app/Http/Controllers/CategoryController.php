@@ -33,6 +33,10 @@ class CategoryController extends Controller
 
     public function add(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required','string','max:255']
+        ]);
+
         $category = new Category;
         $category->name = $request->name;
         $category->save();

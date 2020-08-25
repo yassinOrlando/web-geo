@@ -4,10 +4,11 @@
     <div class="container col-md-12">
         <div class="container">
             <div class="row d-flex justify-content-between">
+              <?php if(Auth::user()->role == 'admin'): ?>
                 <a class="text-white" href="<?php echo e(url('/register')); ?>">
                     <button class="btn btn-primary">  New author </button>
                 </a> 
-
+              <?php endif; ?>
                 <span> Total admins: (<?php echo e($total_admins); ?>) </span>
                 <span> Total authors: (<?php echo e($total_auths); ?>) </span>
     
@@ -48,7 +49,7 @@
                             <button class="btn btn-warning  "> Edit </button>
                           </a>
                           <a href="<?php echo e(route('author_delete', ['auth_id' => $author->id])); ?>"
-                            onclick="return confirm('Are you sure yo want to delete this user? \n All related post will be deleted too!')"
+                            onclick="return confirm('Are you sure you want to delete this user? \n All related posts will be deleted too!')"
                             >
                             <button class="btn btn-danger "> Delete </button>
                           </a>
