@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -69,11 +70,15 @@ class PostController extends Controller
     }
 
     public function delete($post_id){
+        $user = User::find(\Auth::user()->id);
         $post = Post::find($post_id);
-        $post->delete();
+        if ($post->user_id == $user->id || $user->role == 'admin') {
+            $post->delete();
 
-        return redirect()->route('posts', ['id' => \Auth::user()->id])->with('success', 'done');
-        
+            return redirect()->route('posts', ['id' => \Auth::user()->id])->with('success', 'done');
+        } else {
+            return redirect()->route('posts', ['id' => \Auth::user()->id ])->with('alert-delete-post', 'You cant');
+        }
     }
 
     public function form_edit($id){
@@ -107,4 +112,23 @@ class PostController extends Controller
 
         return redirect()->route('post_edit', ['post_id' => $req->id ])->with('message', 'Changes saved');
     }
+
+    public function search(Request $research){
+
+        $posts = Post::where('id', 'like', '%'.$research->input('research').'%')
+                ->orWhere('title', 'like', '%'.$research->input('research').'%')
+                ->orWhere('status', 'like', '%'.$research->input('research').'%')
+                ->orWhere('created_at', 'like', '%'.$research->input('research').'%')
+                ->orWhere('updated_at', 'like', '%'.$research->input('research').'%')
+                ->get();
+        
+        $post_for_author = 0;
+
+        return view('administration/search_templates/found_posts', [
+            'posts' => $posts,
+            'post_for_author' => $post_for_author,
+        ]);
+
+    }
+
 }

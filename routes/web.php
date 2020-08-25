@@ -67,3 +67,8 @@ Route::put('users/authors/save_edit/{auth_id}', 'AuthorController@update')->name
 Route::middleware([AdminAuth::class])->group(function () {
     Route::put('users/categories/save_edit/{cat_id}', 'CategoryController@update')->name('cat_update');
 });
+
+/*
+    Routes for making research
+*/
+Route::get('users/search/post/{research?}', 'PostController@search')->name('search_post');

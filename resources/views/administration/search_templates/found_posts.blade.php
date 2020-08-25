@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'POSTS')
+@section('title', 'SEARCH POSTS')
 
 @section('content')
 <div class="container col-md-12">
@@ -10,7 +10,7 @@
         <button class="btn btn-primary "> New post </button>
       </a>
 
-      <span class="align-baseline "> Total posts: ({{ $total_posts }}) </span>
+      <span class="align-baseline ">  Posts found: ({{ count($posts) }}) </span>
 
       <form class="form-inline my-2 my-lg-0 mr-md-2 " action="{{ route('search_post') }}">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="research">
@@ -34,7 +34,7 @@
         </tr>
       </thead>
       <tbody>
-        @if (Auth::user()->role == 'admin')
+        @if (Auth::user()->role == 'admin' && count($posts))
           @foreach ($posts as $post)
           <tr>
             <th scope="row"> {{ $post->id }} </th>
@@ -55,41 +55,45 @@
             </td>
           </tr>
           @endforeach
-        @else
-          @if ($personal_posts)
+        @elseif(Auth::user()->role == 'author' && count($posts) > 0 )
             @foreach ($posts as $post)
-              @if (Auth::user()->id == $post->user_id)
-              <tr>
-                <th scope="row"> {{ $post->id }} </th>
-                <td> {{ $post->title }} </td>
-                <td> {{ $post->status }} </td>
-                <td> {{ $post->category->name }} </td>
-                <td> {{ $post->user->f_name }} </td>
-                <td> {{ $post->created_at->format('j F, Y') }} </td>
-                <td> {{ $post->updated_at->format('j F, Y') }} </td>
-                <td class="d-flex justify-content-around">
-                  <a href="{{ route('post_edit', ['post_id' => $post->id, 'id' => $post->id ]) }}">
-                    <button class="btn btn-warning  "> Edit </button>
-                  </a>
-                  <a href="{{ route('post_delete', ['post_id' => $post->id ]) }}"
-                    onclick="return confirm('Are you sure you want to delete this post?')">
-                    <button class="btn btn-danger "> Delete </button>
-                  </a>
-                </td>
-              </tr>
-              @endif
+                @if ($post->user_id == Auth::user()->id)
+                <tr>
+                    <th scope="row"> {{ $post->id }} </th>
+                    <td> {{ $post->title }} </td>
+                    <td> {{ $post->status }} </td>
+                    <td> {{ $post->category->name }} </td>
+                    <td> {{ $post->user->f_name }} </td>
+                    <td> {{ $post->created_at->format('j F, Y') }} </td>
+                    <td> {{ $post->updated_at->format('j F, Y') }} </td>
+                    <td class="d-flex justify-content-around">
+                        <a href="{{ route('post_edit', ['post_id' => $post->id, 'id' => $post->id ]) }}">
+                        <button class="btn btn-warning  "> Edit </button>
+                        </a>
+                        <a href="{{ route('post_delete', ['post_id' => $post->id ]) }}"
+                        onclick="return confirm('Are you sure you want to delete this post?')">
+                        <button class="btn btn-danger "> Delete </button>
+                        </a>
+                    </td>
+                </tr>
+                <div hidden> {{ $post_for_author++ }} </div> 
+                @endif
             @endforeach
-          @else
-              <tr>
-                <td> {{ 'You do not have posts' }} </td>
-              </tr>
-          @endif
+            @if ($post_for_author == 0)
+                <tr>
+                    <td> Nothing found for you </td>
+                </tr> 
+            @endif
+        @else
+            <tr>
+                <td> Nothing found </td>
+            </tr> 
         @endif
 
       </tbody>
     </table>
 
   </div>
-  {{ $posts->links() }}
+  {{-- $posts->links() --}}
 </div>
 @endsection
