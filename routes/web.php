@@ -31,9 +31,6 @@ Route::middleware([AdminAuth::class])->group(function () {  //Only admins can pa
     Route::get('/home/{id}/countries', 'CountryController@index')->name('countries');
 });
 
-//http://127.0.0.1:8000/home/14/categories
-//http://127.0.0.1:8000/home/14/countries
-
 /*Routes wich go to the form for add content in new post
 */
 Route::get('forms/{id}/posts/new-post', 'PostController@forms_add')->name('post_form_create');
@@ -45,6 +42,7 @@ Route::post('/home/{id}/posts/added-post', 'PostController@add')->name('post_add
 Route::middleware([AdminAuth::class])->group(function () {
     Route::post('/home/{id}/categories/add', 'CategoryController@add')->name('categories_add');//We see the categs and add them in the same file
 });
+
 /*Routes for administration
     Routes for deleting content
 */
