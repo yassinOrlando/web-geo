@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -76,13 +77,18 @@ class PostController extends Controller
     }
 
     public function form_edit($id){
-        $categories = Category::all();
-        $post_data = Post::find($id);
+        $user = User::find(\Auth::user()->id);
+        if ($user->user_id == $id || $user->role == 'admin') {
+            $categories = Category::all();
+            $post_data = Post::find($id);
 
-        return view('administration/forms_edit/post_edit', [
-            'categories' => $categories,
-            'post' => $post_data
-        ]);
+            return view('administration/forms_edit/post_edit', [
+                'categories' => $categories,
+                'post' => $post_data
+            ]);
+        } else {
+            return redirect()->route('posts', ['id' => \Auth::user()->id ])->with('alert-edit', 'You cant');
+        }
     }
 
     public function update(Request $req){
