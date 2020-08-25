@@ -38,7 +38,7 @@ class AuthorController extends Controller
         return view('/administration/authors', [
             'authors' => $authors, 
             'total_auths' => $total_auths,
-            'total_admins' => $total_admins
+            'total_admins' => $total_admins,
             ]);
     }
 
@@ -96,4 +96,21 @@ class AuthorController extends Controller
         return redirect()->route('author_edit', ['author_id' => $req->id ])->with('message', 'Changes saved');
 
     }
+
+    public function search(Request $research){
+
+        $authors = User::where('id', 'like', '%'.$research->input('research').'%')
+                ->orWhere('f_name', 'like', '%'.$research->input('research').'%')
+                ->orWhere('last_name', 'like', '%'.$research->input('research').'%')
+                ->orWhere('role', 'like', '%'.$research->input('research').'%')
+                ->orWhere('email', 'like', '%'.$research->input('research').'%')
+                ->paginate(1);
+        
+
+        return view('administration/search_templates/found_auth', [
+            'authors' => $authors,
+        ]);
+
+    }
+
 }

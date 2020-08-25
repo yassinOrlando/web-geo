@@ -118,9 +118,15 @@ class PostController extends Controller
         $posts = Post::where('id', 'like', '%'.$research->input('research').'%')
                 ->orWhere('title', 'like', '%'.$research->input('research').'%')
                 ->orWhere('status', 'like', '%'.$research->input('research').'%')
+                /*->orWhere(function($query){
+                    $query->whereColumn('user_id', 'like', '%'.$research->input('research').'%');
+                })
+                ->orWhere(function($query){
+                    $query->whereColumn('category_id', 'like', '%'.$research->input('research').'%');
+                })*/
                 ->orWhere('created_at', 'like', '%'.$research->input('research').'%')
                 ->orWhere('updated_at', 'like', '%'.$research->input('research').'%')
-                ->get();
+                ->paginate(1);
         
         $post_for_author = 0;
 

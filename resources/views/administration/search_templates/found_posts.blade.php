@@ -94,6 +94,6 @@
     </table>
 
   </div>
-  {{-- $posts->links() --}}
+  {{ $posts->links() }}
 </div>
 @endsection

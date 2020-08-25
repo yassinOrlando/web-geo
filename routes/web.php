@@ -72,3 +72,4 @@ Route::middleware([AdminAuth::class])->group(function () {
     Routes for making research
 */
 Route::get('users/search/post/{research?}', 'PostController@search')->name('search_post');
+Route::get('users/search/author/{research?}', 'AuthorController@search')->name('search_author');
