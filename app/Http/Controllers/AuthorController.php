@@ -62,11 +62,14 @@ class AuthorController extends Controller
     }
 
     public function author_edit($id){
-        $user = User::find(\Auth::user()->id);
+        $user_to_edit = User::find(\Auth::user()->id);
 
-        if (($user->id == $id) || ($user->role == 'admin' && $id != 14) ) {
+        if (($user_to_edit->id == $id) || ($user_to_edit->role == 'admin' && $id != 14) ) {
             $author = User::find($id);
-            return view('administration/forms_edit/user_edit', ['author' => $author]);
+            return view('administration/forms_edit/user_edit', [
+                'author' => $author,
+                'user_role' => $user_to_edit->role
+                ]);
         } else {
             return redirect()->route('authors', ['id' => \Auth::user()->id])->with('alert-edit','hello');
         }

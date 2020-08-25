@@ -36,15 +36,19 @@
         <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('User role') }}</label>
        
         <div class="col-md-6">
-            <select name="role" id="role">
-                @if ($author->role == 'author')
-                    <option value="author" selected> Author </option>
-                    <option value="admin"> Admin </option>
-                @else
-                    <option value="author" > Author </option>
-                    <option value="admin" selected> Admin </option>
-                @endif
-            </select>
+            @if ($user_role == 'author')
+                <input type="text" name="role" class="form-control" id="role" value="author" hidden> <span>{{ 'Author' }} </span>
+            @else 
+                <select name="role" id="role">
+                    @if ($author->role == 'author')
+                        <option value="author" selected> Author </option>
+                        <option value="admin"> Admin </option>
+                    @else
+                        <option value="author" > Author </option>
+                        <option value="admin" selected> Admin </option>
+                    @endif
+                </select>
+            @endif    
         </div>
     </div>
 
