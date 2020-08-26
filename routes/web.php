@@ -71,8 +71,8 @@ Route::middleware([AdminAuth::class])->group(function () {
 /*
     Routes for making research
 */
-Route::get('users/search/post/{research?}', 'PostController@search')->name('search_post');
-Route::get('users/search/author/{research?}', 'AuthorController@search')->name('search_author');
+Route::get('users/search/post/', 'PostController@search')->name('search_post');
+Route::get('users/search/author/', 'AuthorController@search')->name('search_author');
 Route::middleware([AdminAuth::class])->group(function () {
-    Route::get('users/search/category', 'CategoryController@search')->name('search_category');
+    Route::get('users/search/category/', 'CategoryController@search')->name('search_category');
 });

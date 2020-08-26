@@ -127,11 +127,25 @@ class PostController extends Controller
                 ->orWhere('created_at', 'like', '%'.$research->input('research').'%')
                 ->orWhere('updated_at', 'like', '%'.$research->input('research').'%')
                 ->paginate(1);
-        
+
+        $posts_count = Post::where('id', 'like', '%'.$research->input('research').'%')
+                ->orWhere('title', 'like', '%'.$research->input('research').'%')
+                ->orWhere('status', 'like', '%'.$research->input('research').'%')
+                /*->orWhere(function($query){
+                    $query->whereColumn('user_id', 'like', '%'.$research->input('research').'%');
+                })
+                ->orWhere(function($query){
+                    $query->whereColumn('category_id', 'like', '%'.$research->input('research').'%');
+                })*/
+                ->orWhere('created_at', 'like', '%'.$research->input('research').'%')
+                ->orWhere('updated_at', 'like', '%'.$research->input('research').'%')
+                ->get();
+
         $post_for_author = 0;
 
         return view('administration/search_templates/found_posts', [
             'posts' => $posts,
+            'posts_count' => $posts_count,
             'post_for_author' => $post_for_author,
         ]);
 

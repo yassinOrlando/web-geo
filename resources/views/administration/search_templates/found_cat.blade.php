@@ -6,7 +6,7 @@
 <div class="container col-md-12">
     <div class="container">
         <div class="row d-flex justify-content-between">
-            <span> Found categories: ({{ count($categories) }}) </span>
+            <span> Found categories: ({{ count($categories_count) }}) </span>
 
             <form class="form-inline my-2 my-lg-0 mr-md-2 " action=" {{ route('categories_add', ['id' => Auth::user()->id]) }} " method="POST">
               @csrf
@@ -36,8 +36,8 @@
           </tr>
       </thead>
       <tbody>
-        @if (count($categories))
-            @foreach ($categories as $category)
+        @if (count($categories_found) > 0)
+            @foreach ($categories_found as $category)
             <tr>
                 <th scope="row"> {{ $category->id }} </th>
                 <td> {{ $category->name }} </td>
@@ -67,6 +67,6 @@
     </table>
 
   </div>
-  {{ $categories->links() }}
+  {{ $categories_found->withQueryString()->links() }}
 </div>
 @endsection

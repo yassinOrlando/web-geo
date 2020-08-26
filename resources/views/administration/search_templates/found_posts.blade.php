@@ -10,7 +10,7 @@
         <button class="btn btn-primary "> New post </button>
       </a>
 
-      <span class="align-baseline ">  Posts found: ({{ count($posts) }}) </span>
+      <span class="align-baseline ">  Posts found: ({{ count($posts_count) }}) </span>
 
       <form class="form-inline my-2 my-lg-0 mr-md-2 " action="{{ route('search_post') }}">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="research">
@@ -94,6 +94,6 @@
     </table>
 
   </div>
-  {{ $posts->links() }}
+  {{ $posts->withQueryString()->links() }}
 </div>
 @endsection

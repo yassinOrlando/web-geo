@@ -79,13 +79,17 @@ class CategoryController extends Controller
 
     public function search(Request $research){
 
-        $categories = Category::where('id', 'like', '%'.$research->input('research').'%')
+        $categories_found = Category::where('id', 'like', '%'.$research->input('research').'%')
                 ->orWhere('name', 'like', '%'.$research->input('research').'%')
                 ->paginate(1);
         
+        $categories_count = Category::where('id', 'like', '%'.$research->input('research').'%')
+                ->orWhere('name', 'like', '%'.$research->input('research').'%')
+                ->get();
 
         return view('administration/search_templates/found_cat', [
-            'categories' => $categories,
+            'categories_found' => $categories_found,
+            'categories_count' => $categories_count,
         ]);
 
     }

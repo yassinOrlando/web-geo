@@ -105,10 +105,18 @@ class AuthorController extends Controller
                 ->orWhere('role', 'like', '%'.$research->input('research').'%')
                 ->orWhere('email', 'like', '%'.$research->input('research').'%')
                 ->paginate(1);
+
+        $authors_count = User::where('id', 'like', '%'.$research->input('research').'%')
+                ->orWhere('f_name', 'like', '%'.$research->input('research').'%')
+                ->orWhere('last_name', 'like', '%'.$research->input('research').'%')
+                ->orWhere('role', 'like', '%'.$research->input('research').'%')
+                ->orWhere('email', 'like', '%'.$research->input('research').'%')
+                ->get();
         
 
         return view('administration/search_templates/found_auth', [
             'authors' => $authors,
+            'authors_count' => $authors_count,
         ]);
 
     }
