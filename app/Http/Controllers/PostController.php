@@ -172,9 +172,11 @@ class PostController extends Controller
 
     }
 
-    public function getImage($image_name){
-        $image = Storage::disk('images')->get($image_name);
-        return new Response($image, 200);
-    }
+    /*public function getImage($image_name){
+        if(\Auth::check() || !\Auth::check()) {
+            $image = Storage::disk('images')->get($image_name);
+            return new Response($image, 200);
+        }
+    }*/
 
 }

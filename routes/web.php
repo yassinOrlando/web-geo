@@ -5,6 +5,8 @@ use App\Http\Middleware\AdminAuth;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +39,15 @@ Route::middleware([AdminAuth::class])->group(function () {  //Only admins can pa
 /*
     Url for getting the images
  */
-Route::get('image/user/{img}', 'AuthorController@getImage')->name('get_avatar');
-Route::get('image/post/{img}', 'PostController@getImage')->name('get_post_img');
+Route::get('image/user/{img}', function($image_name){
+    $image = Storage::disk('images')->get($image_name);
+    return new Response($image, 200);
+})->name('get_avatar');
+
+Route::get('image/post/{img}', function($image_name){
+    $image = Storage::disk('images')->get($image_name);
+    return new Response($image, 200);
+})->name('get_post_img');
 
 /*Routes wich go to the form for add content in new post
 */
@@ -77,8 +86,6 @@ Route::middleware([AdminAuth::class])->group(function () {
     Route::put('users/categories/save_edit/{cat_id}', 'CategoryController@update')->name('cat_update');
 });
 
-/* --------------------------------------------------------------------------------------- */
-
 /*
     Routes for making research
 */
@@ -88,6 +95,7 @@ Route::middleware([AdminAuth::class])->group(function () {
     Route::get('users/search/category/', 'CategoryController@search')->name('search_category');
 });
 
+/* --------------------------------------------------------------------------------------- */
 
 /*Routes for normal pages for readers
  */
@@ -101,7 +109,7 @@ Route::get('/blog', function () {
         'posts' => $posts,
         'categories' => $categories,
     ]);
-})->name('blog');
+})->name('blog')->withoutMiddleware([Authenticate::class]);
 
 Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
     $posts = Post::where('category_id', '=', $cat_id)
@@ -118,7 +126,7 @@ Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
         'id' => $cat_id,
         'name' => $category,
     ]);
-})->name('blog_category');
+})->name('blog_category')->withoutMiddleware([Authenticate::class]);
 
 Route::get('/blog/research/{research?}', function (Request $research) {
     $posts = Post::where('id', 'like', '%'.$research->input('research').'%')
@@ -156,7 +164,7 @@ Route::get('/blog/research/{research?}', function (Request $research) {
         'categories' => $categories,
         'req' => $research->input('research'),
     ]);
-})->name('blog_search');
+})->name('blog_search')->withoutMiddleware([Authenticate::class]);
 
 Route::get('/blog/category/{category}/{cat_id}/{post_name}/{post_id}', function ($category, $cat_id, $post_name, $post_id) {
     $post = Post::find($post_id);
@@ -173,4 +181,4 @@ Route::get('/blog/category/{category}/{cat_id}/{post_name}/{post_id}', function 
     return view('post', [
         'post' => $post
     ]);
-})->name('post');
+})->name('post')->withoutMiddleware([Authenticate::class]);
