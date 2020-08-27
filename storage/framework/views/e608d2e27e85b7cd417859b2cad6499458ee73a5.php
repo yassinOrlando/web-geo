@@ -55,7 +55,7 @@
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <?php else: ?>
           <?php if($personal_posts): ?>
-            <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $my_posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <?php if(Auth::user()->id == $post->user_id): ?>
               <tr>
                 <th scope="row"> <?php echo e($post->id); ?> </th>
@@ -88,8 +88,13 @@
     </table>
 
   </div>
-  <?php echo e($posts->links()); ?>
+  <?php if(Auth::user()->role == 'admin'): ?>
+    <?php echo e($posts->withQueryString()->links()); ?>
 
+  <?php else: ?>
+    <?php echo e($my_posts->withQueryString()->links()); ?>
+
+  <?php endif; ?>
 </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.dashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views//administration/posts.blade.php ENDPATH**/ ?>

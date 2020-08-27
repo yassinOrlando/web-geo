@@ -36,10 +36,14 @@ class PostController extends Controller
                         ->paginate(4);
 
         $personal_posts = count(Post::where('user_id', '=', \Auth::user()->id)->get());
+        $my_posts = Post::where('user_id', '=', \Auth::user()->id)
+                ->orderBy('id', 'desc')
+                ->paginate(1);
         return view('/administration/posts', [
             'posts' => $posts, 
             'total_posts' => $total_posts,
-            'personal_posts' => $personal_posts
+            'personal_posts' => $personal_posts,
+            'my_posts' => $my_posts,
             ]);
     }
 

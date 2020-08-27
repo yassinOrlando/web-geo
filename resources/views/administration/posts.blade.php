@@ -57,7 +57,7 @@
           @endforeach
         @else
           @if ($personal_posts)
-            @foreach ($posts as $post)
+            @foreach ($my_posts as $post)
               @if (Auth::user()->id == $post->user_id)
               <tr>
                 <th scope="row"> {{ $post->id }} </th>
@@ -90,6 +90,10 @@
     </table>
 
   </div>
-  {{ $posts->links() }}
+  @if (Auth::user()->role == 'admin')
+    {{ $posts->withQueryString()->links() }}
+  @else
+    {{ $my_posts->withQueryString()->links() }}
+  @endif
 </div>
 @endsection
