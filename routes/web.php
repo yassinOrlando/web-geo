@@ -35,6 +35,7 @@ Route::middleware([AdminAuth::class])->group(function () {  //Only admins can pa
     Url for getting the images
  */
 Route::get('image/user/{img}', 'AuthorController@getImage')->name('get_avatar');
+Route::get('image/post/{img}', 'PostController@getImage')->name('get_post_img');
 
 /*Routes wich go to the form for add content in new post
 */

@@ -3,7 +3,7 @@
 @section('title', 'EDIT USER')
 
 @section('content')
-<form method="POST" action="{{ route('author_update', ['auth_id' => $author->id]) }}" class="col-md-12">
+<form method="POST" action="{{ route('author_update', ['auth_id' => $author->id]) }}" class="col-md-12" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -20,9 +20,21 @@
         <input id="id" type="text" class="form-control @error('id') is-valid @enderror" value="{{ $author->id }}" name="id" hidden>
 
         <label for="img" class="col-md-4 col-form-label text-md-right">{{ __('Profile image') }}</label>
+        @if ($author->img)
+            <img src="{{ route('get_avatar', ['img' => $author->img]) }}" 
+                alt="profile_pic" 
+                class="rounded mx-auto d-block"
+                style="width: 60px; height: 60px;">
+        @endif
+    </div>
+
+    <div class="form-group row">
+        <input id="id" type="text" class="form-control @error('id') is-valid @enderror" value="{{ $author->id }}" name="id" hidden>
+
+        <label for="img" class="col-md-4 col-form-label text-md-right">{{ __('Change image (optional)') }}</label>
 
         <div class="col-md-6">
-            <input id="img" type="text" class="form-control @error('img') is-valid @enderror" value="{{ $author->img }}" name="img">
+            <input id="img" type="file" class="form-control-file @error('img') is-valid @enderror" value="{{ route('get_avatar', ['img' => $author->img]) }}" name="img">
 
             @error('img')
                 <span class="invalid-feedback" role="alert">

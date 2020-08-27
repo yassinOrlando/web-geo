@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -110,15 +111,24 @@ class PostController extends Controller
 
     public function update(Request $req){
         $validator = Validator::make($req->all(), [
-            'title' => ['required','string','max:255']
+            'title' => ['required','string','max:255'],
+            'img' => ['img'],
         ]);
 
         $post = Post::find($req->id);
         $post->status = $req->status;
         $post->category_id = $req->category_id;
-        $post->img = $req->img;
         $post->title = $req->title;
         $post->content = $req->content;
+
+        $post_img = $req->img;
+
+        if($post_img){
+            $post_img_name = time().$post_img->getClientOriginalName();
+            Storage::disk('images')->put($post_img_name, File::get($post_img));
+            $post->img = $post_img_name; 
+        }
+
         $post->save();
 
         return redirect()->route('post_edit', ['post_id' => $req->id ])->with('message', 'Changes saved');
@@ -160,6 +170,11 @@ class PostController extends Controller
             'post_for_author' => $post_for_author,
         ]);
 
+    }
+
+    public function getImage($image_name){
+        $image = Storage::disk('images')->get($image_name);
+        return new Response($image, 200);
     }
 
 }
