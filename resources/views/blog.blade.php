@@ -21,8 +21,8 @@
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Most popular</a>
             </li>
         </ul>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline" action="{{ route('blog_search') }}">
+          <input class="form-control mr-sm-2" type="search" name="research" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
@@ -37,7 +37,7 @@
                         'post_name' => $post->title,  
                         'post_id' => $post->id ]) 
                         }}">
-                        <img src="https://picsum.photos/650/800" alt="thumbnail" class="card-img-top"
+                        <img src="{{ route('get_post_img', ['img' => $post->img]) }}" alt="thumbnail" class="card-img-top"
                         style="width:100%; height: 200px;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>

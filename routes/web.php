@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminAuth;
 use App\Post;
 use App\Category;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,8 @@ Route::middleware([AdminAuth::class])->group(function () {
     Route::put('users/categories/save_edit/{cat_id}', 'CategoryController@update')->name('cat_update');
 });
 
+/* --------------------------------------------------------------------------------------- */
+
 /*
     Routes for making research
 */
@@ -91,6 +94,7 @@ Route::middleware([AdminAuth::class])->group(function () {
 Route::get('/blog', function () {
     $posts = Post::orderBy('id', 'desc')
             ->paginate(4);
+
     $categories = Category::orderBy('id', 'desc')
             ->get();
     return view('blog', [
@@ -98,18 +102,62 @@ Route::get('/blog', function () {
         'categories' => $categories,
     ]);
 })->name('blog');
+
 Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
     $posts = Post::where('category_id', '=', $cat_id)
+            ->orderBy('id', 'desc')
             ->paginate(2);
+
+    $posts_found = Post::where('category_id', '=', $cat_id)->get();
     $categories = Category::orderBy('id', 'desc')
             ->get();
     return view('blog_parts/post_cats', [
         'posts' => $posts,
+        'posts_found' => $posts_found,
         'categories' => $categories,
         'id' => $cat_id,
         'name' => $category,
     ]);
 })->name('blog_category');
+
+Route::get('/blog/research/{research?}', function (Request $research) {
+    $posts = Post::where('id', 'like', '%'.$research->input('research').'%')
+        ->orWhere('title', 'like', '%'.$research->input('research').'%')
+        ->orWhere('status', 'like', '%'.$research->input('research').'%')
+        /*->orWhere(function($query){
+            $query->whereColumn('user_id', 'like', '%'.$research->input('research').'%');
+        })
+        ->orWhere(function($query){
+            $query->whereColumn('category_id', 'like', '%'.$research->input('research').'%');
+        })*/
+        ->orWhere('created_at', 'like', '%'.$research->input('research').'%')
+        ->orWhere('updated_at', 'like', '%'.$research->input('research').'%')
+        ->paginate(1);
+
+    $posts_found = Post::where('id', 'like', '%'.$research->input('research').'%')
+        ->orWhere('title', 'like', '%'.$research->input('research').'%')
+        ->orWhere('status', 'like', '%'.$research->input('research').'%')
+        /*->orWhere(function($query){
+            $query->whereColumn('user_id', 'like', '%'.$research->input('research').'%');
+        })
+        ->orWhere(function($query){
+            $query->whereColumn('category_id', 'like', '%'.$research->input('research').'%');
+        })*/
+        ->orWhere('created_at', 'like', '%'.$research->input('research').'%')
+        ->orWhere('updated_at', 'like', '%'.$research->input('research').'%')
+        ->get();
+
+    $categories = Category::orderBy('id', 'desc')
+        ->get();
+
+    return view('blog_parts/post_search', [
+        'posts' => $posts,
+        'posts_found' => $posts_found,
+        'categories' => $categories,
+        'req' => $research->input('research'),
+    ]);
+})->name('blog_search');
+
 Route::get('/blog/category/{category}/{cat_id}/{post_name}/{post_id}', function ($category, $cat_id, $post_name, $post_id) {
     $post = Post::find($post_id);
     /*$posts = Post::where('category_id', '=', $cat_id)
