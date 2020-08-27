@@ -5,7 +5,9 @@
 @section('content')
     <div class="container col-md-6">
         <div class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
-            <img src="{{ Auth::user()->img }} " alt="profile" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+            @if (Auth::user()->img)
+                <img src="{{ route('get_avatar', ['img' => Auth::user()->img]) }}" alt="profile_pic" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+            @endif
         </div>
         <div class="md-6">
             <strong> Role: </strong> {{ Auth::user()->role }} 

@@ -9,14 +9,14 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
                             <label for="img" class="col-md-4 col-form-label text-md-right">{{ __('Profile image') }}</label>
 
                             <div class="col-md-6">
-                                <input id="img" type="text" class="form-control @error('img') is-valid @enderror" value="{{ old('img') }}" name="img">
+                                <input id="img" type="file" class="form-control-file @error('img') is-valid @enderror" value="{{ old('img') }}" name="img">
 
                                 @error('img')
                                     <span class="invalid-feedback" role="alert">

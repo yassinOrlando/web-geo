@@ -27,6 +27,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Profile</th>
                     <th scope="col" class="col-2">Name</th>
                     <th scope="col" class="col-2">Last name</th>
                     <th scope="col">Role</th>
@@ -41,6 +42,14 @@
                   @foreach ($authors as $author)
                     <tr>
                       <th scope="row"> {{ $author->id }} </th>
+                      <td>
+                        @if (Auth::user()->img)
+                          <img src="{{ route('get_avatar', ['img' => $author->img]) }}" 
+                            alt="profile_pic" 
+                            class="mx-auto d-block"
+                            style="width: 40px; height: 40px; border-radius: 50px;">
+                        @endif
+                      </td>
                       <td> {{ $author->f_name }} </td>
                       <td> {{ $author->last_name }} </td>
                       <td> {{ $author->role }} </td>

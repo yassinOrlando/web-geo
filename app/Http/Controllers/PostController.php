@@ -8,6 +8,8 @@ use App\Category;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -50,16 +52,25 @@ class PostController extends Controller
 
     public function add(Request $request){
         $validator = Validator::make($request->all(), [
-            'title' => ['required','string','max:255']
+            'img' => ['required', 'image'],
+            'title' => ['required','string','max:255'],
         ]);
 
+        $post_img = $request->file('img');
+
         $post = new Post();
-        $post->img = $request->img;
         $post->status = $request->status;
         $post->title = $request->title;
         $post->content = $request->content;
         $post->category_id = $request->category_id;
         $post->user_id = $request->user_id; 
+
+        if($post_img){
+            $post_img_name = time().$post_img->getClientOriginalName();
+            Storage::disk('images')->put($post_img_name, File::get($post_img));
+            $post->img = $post_img_name; 
+        }
+
         $post->save();
 
         $total_posts = count(Post::get());

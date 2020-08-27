@@ -60,7 +60,9 @@
                         <?php else: ?>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="<?php echo e(Auth::user()->img); ?>" alt="profile_pic" style="width: 40px; height: 40px; border-radius: 50px;"> 
+                                    <?php if(Auth::user()->img): ?>
+                                        <img src="<?php echo e(route('get_avatar', ['img' => Auth::user()->img])); ?>" alt="profile_pic" style="width: 40px; height: 40px; border-radius: 50px;">
+                                    <?php endif; ?>
                                     <span class="caret"> <?php echo e(Auth::user()->f_name); ?></span>
                                 </a>
 

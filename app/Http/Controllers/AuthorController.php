@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class AuthorController extends Controller
 {
@@ -119,6 +121,11 @@ class AuthorController extends Controller
             'authors_count' => $authors_count,
         ]);
 
+    }
+
+    public function getImage($image_name){
+        $image = Storage::disk('images')->get($image_name);
+        return new Response($image, 200);
     }
 
 }

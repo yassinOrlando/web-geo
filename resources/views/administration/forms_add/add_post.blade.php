@@ -3,7 +3,7 @@
 @section('title', 'NEW POST')
 
 @section('content')
-<form method="POST" action="{{ route('post_add', ['id' => Auth::user()->id]) }}" class="col-md-12">
+<form method="POST" action="{{ route('post_add', ['id' => Auth::user()->id]) }}" class="col-md-12" enctype="multipart/form-data">
     @csrf
 
     <div class="form-group row d-flex justify-content-around ">
@@ -35,8 +35,8 @@
     <label for="img" class="col-md-2 col-form-label text-md-left">{{ __('Post image') }}</label>
 
     <div class="col-md-12">
-        <input id="img" type="text" class="form-control @error('img') is-valid @enderror" value="{{ old('img') }}"
-            name="img">
+        <input id="img" type="file" class="form-control-file @error('img') is-valid @enderror" 
+            name="img" required>
 
         @error('img')
         <span class="invalid-feedback" category_id="alert">

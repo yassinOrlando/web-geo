@@ -3,7 +3,9 @@
 <?php $__env->startSection('content'); ?>
     <div class="container col-md-6">
         <div class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
-            <img src="<?php echo e(Auth::user()->img); ?> " alt="profile" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+            <?php if(Auth::user()->img): ?>
+                <img src="<?php echo e(route('get_avatar', ['img' => Auth::user()->img])); ?>" alt="profile_pic" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+            <?php endif; ?>
         </div>
         <div class="md-6">
             <strong> Role: </strong> <?php echo e(Auth::user()->role); ?> 

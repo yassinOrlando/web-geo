@@ -1,7 +1,7 @@
 <?php $__env->startSection('title', 'NEW POST'); ?>
 
 <?php $__env->startSection('content'); ?>
-<form method="POST" action="<?php echo e(route('post_add', ['id' => Auth::user()->id])); ?>" class="col-md-12">
+<form method="POST" action="<?php echo e(route('post_add', ['id' => Auth::user()->id])); ?>" class="col-md-12" enctype="multipart/form-data">
     <?php echo csrf_field(); ?>
 
     <div class="form-group row d-flex justify-content-around ">
@@ -33,15 +33,15 @@
     <label for="img" class="col-md-2 col-form-label text-md-left"><?php echo e(__('Post image')); ?></label>
 
     <div class="col-md-12">
-        <input id="img" type="text" class="form-control <?php $__errorArgs = ['img'];
+        <input id="img" type="file" class="form-control-file <?php $__errorArgs = ['img'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-valid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('img')); ?>"
-            name="img">
+unset($__errorArgs, $__bag); ?>" 
+            name="img" required>
 
         <?php $__errorArgs = ['img'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

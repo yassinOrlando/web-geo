@@ -25,6 +25,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Profile</th>
                     <th scope="col" class="col-2">Name</th>
                     <th scope="col" class="col-2">Last name</th>
                     <th scope="col">Role</th>
@@ -39,6 +40,14 @@
                   <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                       <th scope="row"> <?php echo e($author->id); ?> </th>
+                      <td>
+                        <?php if(Auth::user()->img): ?>
+                          <img src="<?php echo e(route('get_avatar', ['img' => $author->img])); ?>" 
+                            alt="profile_pic" 
+                            class="mx-auto d-block"
+                            style="width: 40px; height: 40px; border-radius: 50px;">
+                        <?php endif; ?>
+                      </td>
                       <td> <?php echo e($author->f_name); ?> </td>
                       <td> <?php echo e($author->last_name); ?> </td>
                       <td> <?php echo e($author->role); ?> </td>

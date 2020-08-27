@@ -31,6 +31,11 @@ Route::middleware([AdminAuth::class])->group(function () {  //Only admins can pa
     Route::get('/home/{id}/countries', 'CountryController@index')->name('countries');
 });
 
+/*
+    Url for getting the images
+ */
+Route::get('image/user/{img}', 'AuthorController@getImage')->name('get_avatar');
+
 /*Routes wich go to the form for add content in new post
 */
 Route::get('forms/{id}/posts/new-post', 'PostController@forms_add')->name('post_form_create');
@@ -55,9 +60,9 @@ Route::middleware([AdminAuth::class])->group(function () {
 /*Routes to the forms for editing content
 */
 Route::get('users/posts/edit_post/{post_id}', 'PostController@form_edit')->name('post_edit');
+Route::get('users/authors/edit_author/{author_id}', 'AuthorController@author_edit')->name('author_edit');
 Route::middleware([AdminAuth::class])->group(function () {
     Route::get('users/category/edit_category/{cat_id}', 'CategoryController@cat_edit')->name('cat_edit');
-    Route::get('users/authors/edit_author/{author_id}', 'AuthorController@author_edit')->name('author_edit');
 });
 
 /*Routes to the forms for updating content

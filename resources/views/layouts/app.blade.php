@@ -55,7 +55,9 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{ Auth::user()->img }}" alt="profile_pic" style="width: 40px; height: 40px; border-radius: 50px;">
+                                    @if (Auth::user()->img)
+                                        <img src="{{ route('get_avatar', ['img' => Auth::user()->img]) }}" alt="profile_pic" style="width: 40px; height: 40px; border-radius: 50px;">
+                                    @endif
                                     <span class="caret">{{ Auth::user()->f_name }}</span>
                                 </a>
 
