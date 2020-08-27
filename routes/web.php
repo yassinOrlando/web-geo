@@ -82,3 +82,10 @@ Route::get('users/search/author/', 'AuthorController@search')->name('search_auth
 Route::middleware([AdminAuth::class])->group(function () {
     Route::get('users/search/category/', 'CategoryController@search')->name('search_category');
 });
+
+
+/*Routes for normal pages for readers
+ */
+Route::get('/blog', function () {
+    return view('blog');
+})->name('blog');

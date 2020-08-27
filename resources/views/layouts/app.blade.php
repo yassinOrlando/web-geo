@@ -41,7 +41,7 @@
                             <a class="nav-link" href="#">Explore <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Blog <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('blog') }}">Blog <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
 
@@ -83,6 +83,7 @@
         </nav>
 
         <main class="py-4">
+            <h1 class="text-center">@yield('title')</h1>
             @yield('content')
         </main>
     </div>

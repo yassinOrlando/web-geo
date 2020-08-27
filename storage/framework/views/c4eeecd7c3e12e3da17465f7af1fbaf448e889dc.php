@@ -41,7 +41,7 @@
                             <a class="nav-link" href="#">Explore <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Blog <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="<?php echo e(route('blog')); ?>">Blog <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
 
@@ -91,10 +91,10 @@
 
         <main class="py-4">
             <div class="container col-md-12">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" >
                     <div class="col-md-12">
-                        <div class="card bg-warning">
-                            <div class="card-header text-center"><b><?php echo e(__('Dashboard')); ?></b></div>
+                        <div class="card " style="background-color: #ff8300;">
+                            <div class="card-header text-center text-white"><b><?php echo e(__('Dashboard')); ?></b></div>
                         </div>
                     </div>
                 </div>
