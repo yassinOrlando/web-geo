@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminAuth;
+use App\Post;
+use App\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,5 +89,40 @@ Route::middleware([AdminAuth::class])->group(function () {
 /*Routes for normal pages for readers
  */
 Route::get('/blog', function () {
-    return view('blog');
+    $posts = Post::orderBy('id', 'desc')
+            ->paginate(4);
+    $categories = Category::orderBy('id', 'desc')
+            ->get();
+    return view('blog', [
+        'posts' => $posts,
+        'categories' => $categories,
+    ]);
 })->name('blog');
+Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
+    $posts = Post::where('category_id', '=', $cat_id)
+            ->paginate(2);
+    $categories = Category::orderBy('id', 'desc')
+            ->get();
+    return view('blog_parts/post_cats', [
+        'posts' => $posts,
+        'categories' => $categories,
+        'id' => $cat_id,
+        'name' => $category,
+    ]);
+})->name('blog_category');
+Route::get('/blog/category/{category}/{cat_id}/{post_name}/{post_id}', function ($category, $cat_id, $post_name, $post_id) {
+    $post = Post::find($post_id);
+    /*$posts = Post::where('category_id', '=', $cat_id)
+            ->paginate(2);
+    $categories = Category::orderBy('id', 'desc')
+            ->get();
+    return view('post', [
+        'posts' => $posts,
+        'categories' => $categories,
+        'id' => $cat_id,
+        'name' => $category,
+    ]);*/
+    return view('post', [
+        'post' => $post
+    ]);
+})->name('post');
