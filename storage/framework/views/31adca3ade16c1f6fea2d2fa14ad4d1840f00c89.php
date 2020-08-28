@@ -34,13 +34,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item <?php echo e((request()->is('covid')) ? 'active' : ''); ?>">
                             <a class="nav-link" href="#">COVID Map <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item <?php echo e((request()->is('world-map')) ? 'active' : ''); ?>">
                             <a class="nav-link" href="#">Explore <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="<?php echo e((request()->segment(1) == 'blog') ? 'active' : ''); ?>">  
                             <a class="nav-link" href="<?php echo e(route('blog')); ?>">Blog <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>

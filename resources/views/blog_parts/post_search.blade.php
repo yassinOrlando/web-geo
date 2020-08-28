@@ -7,10 +7,10 @@
     <nav class="navbar navbar-light bg-light">
         <ul class="nav nav-pills">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('blog') }}" style="color: #ff8300;">Latest posts</a>
+              <a class="nav-link" href="{{ route('blog') }}" >Latest posts</a>
             </li>
             <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" style="color: #ff8300;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
               <div class="dropdown-menu" >
                 @foreach($categories as $category)
                 <a class="dropdown-item" href="{{ route('blog_category', ['category' => $category->name, 'cat_id' => $category->id]) }}">{{ $category->name }}</a>

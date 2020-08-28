@@ -3599,7 +3599,7 @@ input[type=button].btn-block {
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #3490dc;
+  background-color: #ff8300;
 }
 
 .dropdown-item.disabled,
@@ -4473,7 +4473,7 @@ input[type=button].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #3490dc;
+  background-color: #ff8300;
 }
 
 .nav-fill > .nav-link,
@@ -4859,7 +4859,7 @@ input[type=button].btn-block {
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .nav-link.active {
-  color: rgba(0, 0, 0, 0.9);
+  color: #ff8300;
 }
 
 .navbar-light .navbar-toggler {
@@ -5228,14 +5228,14 @@ input[type=button].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #3490dc;
+  color: #ff8300;
   background-color: #fff;
   border: 1px solid #dee2e6;
 }
 
 .page-link:hover {
   z-index: 2;
-  color: #1d68a7;
+  color: #ff8300;
   text-decoration: none;
   background-color: #e9ecef;
   border-color: #dee2e6;
@@ -5261,8 +5261,8 @@ input[type=button].btn-block {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #3490dc;
-  border-color: #3490dc;
+  background-color: #ff8300;
+  border-color: #ff8300;
 }
 
 .page-item.disabled .page-link {

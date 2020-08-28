@@ -10,7 +10,7 @@
                 <a class="nav-link active" href="{{ route('blog') }}" style="background-color: #ff8300;">Latest posts</a>
             </li>
             <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" style="color: #ff8300;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
               <div class="dropdown-menu" >
                 @foreach($categories as $category)
                     <a class="dropdown-item" href="{{ route('blog_category', ['category' => $category->name, 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
