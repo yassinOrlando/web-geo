@@ -178,7 +178,11 @@ Route::get('/blog/category/{category}/{cat_id}/{post_name}/{post_id}', function 
         'id' => $cat_id,
         'name' => $category,
     ]);*/
+    $other_posts = Post::orderBy('id', 'desc')
+            ->limit(6)
+            ->get();
     return view('post', [
-        'post' => $post
+        'post' => $post,
+        'other_posts' => $other_posts,
     ]);
 })->name('post')->withoutMiddleware([Authenticate::class]);

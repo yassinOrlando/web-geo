@@ -45,5 +45,28 @@
                 </div>
             </div>
         </div>
+
+        <br>
+        <h3> Other posts </h3>
+        <div class="row row-cols-1 row-cols-md-3">
+            @foreach($other_posts as $post)
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <a href="{{ route('post', [
+                            'category' => $post->category->name, 
+                            'cat_id' => $post->category_id, 
+                            'post_name' => $post->title,  
+                            'post_id' => $post->id ]) 
+                            }}">
+                            <img src="{{ route('get_post_img', ['img' => $post->img]) }}" alt="thumbnail" class="card-img-top"
+                                style="width:100%; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection

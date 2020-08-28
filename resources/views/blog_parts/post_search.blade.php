@@ -7,7 +7,7 @@
     <nav class="navbar navbar-light bg-light">
         <ul class="nav nav-pills">
             <li class="nav-item">
-              <a class="nav-link active" href="{{ route('blog') }}" style="background-color: #ff8300;">Latest posts</a>
+              <a class="nav-link" href="{{ route('blog') }}" style="color: #ff8300;">Latest posts</a>
             </li>
             <li class="nav-item dropdown" >
               <a class="nav-link dropdown-toggle" style="color: #ff8300;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
