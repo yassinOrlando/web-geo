@@ -168,16 +168,6 @@ Route::get('/blog/research/{research?}', function (Request $research) {
 
 Route::get('/blog/category/{category}/{cat_id}/{post_name}/{post_id}', function ($category, $cat_id, $post_name, $post_id) {
     $post = Post::find($post_id);
-    /*$posts = Post::where('category_id', '=', $cat_id)
-            ->paginate(2);
-    $categories = Category::orderBy('id', 'desc')
-            ->get();
-    return view('post', [
-        'posts' => $posts,
-        'categories' => $categories,
-        'id' => $cat_id,
-        'name' => $category,
-    ]);*/
     $other_posts = Post::orderBy('id', 'desc')
             ->limit(6)
             ->get();
@@ -186,3 +176,12 @@ Route::get('/blog/category/{category}/{cat_id}/{post_name}/{post_id}', function 
         'other_posts' => $other_posts,
     ]);
 })->name('post')->withoutMiddleware([Authenticate::class]);
+
+
+Route::get('/world_map', function () {
+    return view('world-map');
+})->name('world_map');
+
+Route::get('/covid_19', function () {
+    return view('covid');
+})->name('covid_map');

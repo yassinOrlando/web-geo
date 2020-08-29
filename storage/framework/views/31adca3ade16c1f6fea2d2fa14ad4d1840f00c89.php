@@ -12,12 +12,22 @@
 
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
+    <?php if(request()->is('world_map')): ?>
+    <script src="<?php echo e(asset('js/amchart.js')); ?>" defer></script>
+    <?php endif; ?>
+    
+    <?php if(request()->is('covid_19')): ?>
+    <script src="<?php echo e(asset('js/covid-chart.js')); ?>" defer></script>
+    <?php endif; ?>
+
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="<?php echo e(asset('css/charts.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 </head>
 
@@ -38,11 +48,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item <?php echo e((request()->is('covid')) ? 'active' : ''); ?>">
-                            <a class="nav-link" href="#">COVID Map <span class="sr-only">(current)</span></a>
+                        <li class="nav-item <?php echo e((request()->is('covid_19')) ? 'active' : ''); ?>">
+                            <a class="nav-link" href="<?php echo e(route('covid_map')); ?>">COVID Map <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item <?php echo e((request()->is('world-map')) ? 'active' : ''); ?>">
-                            <a class="nav-link" href="#">Explore <span class="sr-only">(current)</span></a>
+                        <li class="nav-item <?php echo e((request()->is('world_map')) ? 'active' : ''); ?>">
+                            <a class="nav-link" href="<?php echo e(route('world_map')); ?>">Explore <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="<?php echo e((request()->segment(1) == 'blog') ? 'active' : ''); ?>">
                             <a class="nav-link" href="<?php echo e(route('blog')); ?>">Blog <span
@@ -115,6 +125,18 @@
             </div>
         </div>
     </footer>
+
 </body>
+    <?php if(request()->is('world_map') || request()->is('covid_19')): ?>
+        <script src="https://cdn.amcharts.com/lib/4/core.js" ></script>
+        <script src="https://cdn.amcharts.com/lib/4/maps.js" ></script>
+        <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js" ></script>
+        <script src="https://cdn.amcharts.com/lib/4/geodata/data/countries2.js" ></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/dark.js" ></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/animated.js" ></script>
+        <script src="https://cdn.amcharts.com/lib/4/charts.js" ></script>
+        <script src="https://covid.amCharts.com/data/js/world_timeline.js" ></script>
+        <script src="https://covid.amCharts.com/data/js/total_timeline.js" ></script>
+    <?php endif; ?>
 
 </html><?php /**PATH /opt/lampp/htdocs/my_project/web-geo/resources/views/layouts/app.blade.php ENDPATH**/ ?>
