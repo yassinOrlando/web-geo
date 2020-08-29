@@ -13,10 +13,12 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     @if (request()->is('world_map'))
+    <link href="{{ asset('css/charts.css') }}" rel="stylesheet">
     <script src="{{ asset('js/amchart.js') }}" defer></script>
     @endif
     
     @if (request()->is('covid_19'))
+    <link href="{{ asset('css/charts.css') }}" rel="stylesheet">
     <script src="{{ asset('js/covid-chart.js') }}" defer></script>
     @endif
 
@@ -27,8 +29,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/charts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        main{
+            min-height: 700px;
+        }
+    </style>
 </head>
 
 <body>

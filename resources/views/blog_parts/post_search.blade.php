@@ -22,6 +22,7 @@
             </li>
         </ul>
         <form class="form-inline" action="{{ route('blog_search') }}">
+            @csrf
             <input class="form-control mr-sm-2" type="search" name="research" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -33,7 +34,7 @@
                 <div class="col mb-4">
                     <div class="card h-100">
                         <a href="{{ route('post', [
-                            'category' => $post->category->name, 
+                            'category' => $post->name, 
                             'cat_id' => $post->category_id, 
                             'post_name' => $post->title,  
                             'post_id' => $post->id ]) 
@@ -54,7 +55,7 @@
                                             <circle cx="3.5" cy="8" r=".5" />
                                             <circle cx="3.5" cy="10.5" r=".5" />
                                         </svg>
-                                        {{ $post->category->name }}
+                                        {{ $post->name }}
                                     </p>
                                     <p class="text-muted">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3"
@@ -64,15 +65,15 @@
                                             <path fill-rule="evenodd"
                                                 d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                                         </svg>
-                                        {{ $post->created_at->format('d/m/Y') }}
+                                        {{ date('d/m/Y', strtotime($post->created_at)) }}
                                     </p>
                                 </div>
 
                                 <blockquote class="blockquote mb-0">
                                     <footer class="blockquote-footer">
-                                        <img src="{{ route('get_avatar', ['img' => $post->user->img]) }}" alt="author_pic"
+                                        <img src="{{ route('get_avatar', ['img' => $post->user_img]) }}" alt="author_pic"
                                             style="width: 40px; height: 40px; border-radius:100px;">
-                                        {{ $post->user->f_name.' '.$post->user->last_name }}
+                                        {{ $post->f_name.' '.$post->last_name }}
                                     </footer>
                                 </blockquote>
                             </div>

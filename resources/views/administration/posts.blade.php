@@ -42,8 +42,8 @@
             <td> {{ $post->status }} </td>
             <td> {{ $post->category->name }} </td>
             <td> {{ $post->user->f_name }} </td>
-            <td> {{ $post->created_at->format('j F, Y') }} </td>
-            <td> {{ $post->updated_at->format('j F, Y') }} </td>
+            <td> {{ $post->created_at->format('d/m/Y') }} </td>
+            <td> {{ $post->updated_at->format('d/m/Y') }} </td>
             <td class="d-flex justify-content-around">
               <a href="{{ route('post_edit', ['post_id' => $post->id, 'id' => $post->id ]) }}">
                 <button class="btn btn-warning  "> Edit </button>
@@ -65,8 +65,8 @@
                 <td> {{ $post->status }} </td>
                 <td> {{ $post->category->name }} </td>
                 <td> {{ $post->user->f_name }} </td>
-                <td> {{ $post->created_at->format('j F, Y') }} </td>
-                <td> {{ $post->updated_at->format('j F, Y') }} </td>
+                <td> {{ $post->created_at->format('d/m/Y') }} </td>
+                <td> {{ $post->updated_at->format('d/m/Y') }} </td>
                 <td class="d-flex justify-content-around">
                   <a href="{{ route('post_edit', ['post_id' => $post->id, 'id' => $post->id ]) }}">
                     <button class="btn btn-warning  "> Edit </button>

@@ -22,6 +22,7 @@
             </li>
         </ul>
         <form class="form-inline" action="{{ route('blog_search') }}">
+            @csrf
           <input class="form-control mr-sm-2" type="search" name="research" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -63,7 +64,7 @@
                                         <path fill-rule="evenodd"
                                             d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                                     </svg>
-                                    {{ $post->created_at->format('d/m/Y') }}
+                                    {{ date('d/m/Y', strtotime($post->created_at)) }}
                                 </p>
                             </div>
 

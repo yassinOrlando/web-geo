@@ -40,8 +40,8 @@
                     <tr>
                       <th scope="row"> {{ $category->id }} </th>
                       <td> {{ $category->name }} </td>
-                      <td> {{ $category->created_at->format('j F, Y') }} </td>
-                      <td> {{ $category->updated_at->format('j F, Y') }} </td>
+                      <td> {{ $category->created_at->format('d/m/Y') }} </td>
+                      <td> {{ $category->updated_at->format('d/m/Y') }} </td>
                       <td class="d-flex justify-content-around" >
                           <a href="{{ route('cat_edit', ['cat_id' => $category->id, 'id' => $category->id ]) }}" >
                             <button class="btn btn-warning  "> Edit </button>

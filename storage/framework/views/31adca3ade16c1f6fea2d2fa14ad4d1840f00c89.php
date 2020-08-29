@@ -13,10 +13,12 @@
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
     <?php if(request()->is('world_map')): ?>
+    <link href="<?php echo e(asset('css/charts.css')); ?>" rel="stylesheet">
     <script src="<?php echo e(asset('js/amchart.js')); ?>" defer></script>
     <?php endif; ?>
     
     <?php if(request()->is('covid_19')): ?>
+    <link href="<?php echo e(asset('css/charts.css')); ?>" rel="stylesheet">
     <script src="<?php echo e(asset('js/covid-chart.js')); ?>" defer></script>
     <?php endif; ?>
 
@@ -27,8 +29,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="<?php echo e(asset('css/charts.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+    <style>
+        main{
+            min-height: 700px;
+        }
+    </style>
 </head>
 
 <body>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminAuth;
 use App\Post;
 use App\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
@@ -129,30 +130,30 @@ Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
 })->name('blog_category')->withoutMiddleware([Authenticate::class]);
 
 Route::get('/blog/research/{research?}', function (Request $research) {
-    $posts = Post::where('id', 'like', '%'.$research->input('research').'%')
+    $posts = DB::table('posts')
+        ->leftjoin('users', 'posts.user_id', '=', 'users.id')
+        ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+        ->where('posts.id', 'like', '%'.$research->input('research').'%')
         ->orWhere('title', 'like', '%'.$research->input('research').'%')
         ->orWhere('status', 'like', '%'.$research->input('research').'%')
-        /*->orWhere(function($query){
-            $query->whereColumn('user_id', 'like', '%'.$research->input('research').'%');
-        })
-        ->orWhere(function($query){
-            $query->whereColumn('category_id', 'like', '%'.$research->input('research').'%');
-        })*/
-        ->orWhere('created_at', 'like', '%'.$research->input('research').'%')
-        ->orWhere('updated_at', 'like', '%'.$research->input('research').'%')
+        ->orWhere('users.f_name', 'like', '%'.$research->input('research').'%')
+        ->orWhere('categories.name', 'like', '%'.$research->input('research').'%')
+        ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
+        ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%')
+        ->select('posts.*', 'users.f_name', 'users.last_name', 'users.img as user_img', 'categories.name')
         ->paginate(1);
 
-    $posts_found = Post::where('id', 'like', '%'.$research->input('research').'%')
+    $posts_found = DB::table('posts')
+        ->leftjoin('users', 'posts.user_id', '=', 'users.id')
+        ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+        ->where('posts.id', 'like', '%'.$research->input('research').'%')
         ->orWhere('title', 'like', '%'.$research->input('research').'%')
         ->orWhere('status', 'like', '%'.$research->input('research').'%')
-        /*->orWhere(function($query){
-            $query->whereColumn('user_id', 'like', '%'.$research->input('research').'%');
-        })
-        ->orWhere(function($query){
-            $query->whereColumn('category_id', 'like', '%'.$research->input('research').'%');
-        })*/
-        ->orWhere('created_at', 'like', '%'.$research->input('research').'%')
-        ->orWhere('updated_at', 'like', '%'.$research->input('research').'%')
+        ->orWhere('users.f_name', 'like', '%'.$research->input('research').'%')
+        ->orWhere('categories.name', 'like', '%'.$research->input('research').'%')
+        ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
+        ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%')
+        ->select('posts.*', 'users.f_name', 'categories.name')
         ->get();
 
     $categories = Category::orderBy('id', 'desc')

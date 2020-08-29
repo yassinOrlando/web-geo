@@ -40,10 +40,10 @@
             <th scope="row"> {{ $post->id }} </th>
             <td> {{ $post->title }} </td>
             <td> {{ $post->status }} </td>
-            <td> {{ $post->category->name }} </td>
-            <td> {{ $post->user->f_name }} </td>
-            <td> {{ $post->created_at->format('j F, Y') }} </td>
-            <td> {{ $post->updated_at->format('j F, Y') }} </td>
+            <td> {{ $post->name }} </td>
+            <td> {{ $post->f_name }} </td>
+            <td> {{ date('d/m/Y', strtotime($post->created_at)) }} </td>
+            <td> {{ date('d/m/Y', strtotime($post->updated_at)) }} </td>
             <td class="d-flex justify-content-around">
               <a href="{{ route('post_edit', ['post_id' => $post->id, 'id' => $post->id ]) }}">
                 <button class="btn btn-warning  "> Edit </button>
@@ -62,10 +62,10 @@
                     <th scope="row"> {{ $post->id }} </th>
                     <td> {{ $post->title }} </td>
                     <td> {{ $post->status }} </td>
-                    <td> {{ $post->category->name }} </td>
-                    <td> {{ $post->user->f_name }} </td>
-                    <td> {{ $post->created_at->format('j F, Y') }} </td>
-                    <td> {{ $post->updated_at->format('j F, Y') }} </td>
+                    <td> {{ $post->name }} </td>
+                    <td> {{ $post->f_name }} </td>
+                    <td> {{ date('d/m/Y', strtotime($post->created_at)) }} </td>
+                    <td> {{ date('d/m/Y', strtotime($post->updated_at)) }} </td>
                     <td class="d-flex justify-content-around">
                         <a href="{{ route('post_edit', ['post_id' => $post->id, 'id' => $post->id ]) }}">
                         <button class="btn btn-warning  "> Edit </button>
@@ -81,7 +81,7 @@
             @endforeach
             @if ($post_for_author == 0)
                 <tr>
-                    <td> Nothing found for you </td>
+                    <td> Content not for you </td>
                 </tr> 
             @endif
         @else

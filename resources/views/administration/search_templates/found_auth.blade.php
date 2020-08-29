@@ -53,8 +53,8 @@
                 <td> {{ $author->last_name }} </td>
                 <td> {{ $author->role }} </td>
                 <td> {{ $author->email }} </td>
-                <td> {{ $author->created_at->format('j F, Y') }} </td>
-                <td> {{ $author->updated_at->format('j F, Y') }} </td>
+                <td> {{ $author->created_at->format('d/m/Y') }} </td>
+                <td> {{ $author->updated_at->format('d/m/Y') }} </td>
                 <td class="d-flex justify-content-around" >
                     <a href="{{ route('author_edit', ['author_id' => $author->id, 'id' => $author->id ]) }}" >
                       <button class="btn btn-warning  "> Edit </button>
