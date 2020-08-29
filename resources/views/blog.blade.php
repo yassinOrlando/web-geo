@@ -78,7 +78,7 @@
                         </div>
                     </a>
                 </div>
-            </div>
+            </div>     
         @endforeach
     </div>
     {{ $posts->links() }}

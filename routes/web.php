@@ -101,7 +101,8 @@ Route::middleware([AdminAuth::class])->group(function () {
 /*Routes for normal pages for readers
  */
 Route::get('/blog', function () {
-    $posts = Post::orderBy('id', 'desc')
+    $posts = Post::where('status', '=', 'published')
+            ->orderBy('id', 'desc')
             ->paginate(4);
 
     $categories = Category::orderBy('id', 'desc')
@@ -114,10 +115,13 @@ Route::get('/blog', function () {
 
 Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
     $posts = Post::where('category_id', '=', $cat_id)
+            ->where('status', '=', 'published')
             ->orderBy('id', 'desc')
             ->paginate(2);
 
-    $posts_found = Post::where('category_id', '=', $cat_id)->get();
+    $posts_found = Post::where('category_id', '=', $cat_id)
+            ->where('status', '=', 'published')
+            ->get();
     $categories = Category::orderBy('id', 'desc')
             ->get();
     return view('blog_parts/post_cats', [
@@ -133,27 +137,33 @@ Route::get('/blog/research/{research?}', function (Request $research) {
     $posts = DB::table('posts')
         ->leftjoin('users', 'posts.user_id', '=', 'users.id')
         ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-        ->where('posts.id', 'like', '%'.$research->input('research').'%')
-        ->orWhere('title', 'like', '%'.$research->input('research').'%')
-        ->orWhere('status', 'like', '%'.$research->input('research').'%')
-        ->orWhere('users.f_name', 'like', '%'.$research->input('research').'%')
-        ->orWhere('categories.name', 'like', '%'.$research->input('research').'%')
-        ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
-        ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%')
+        ->where('status', '=', 'published')
+        ->where(function ($query) use ($research) {
+            $query->where('posts.id', 'like', '%'.$research->input('research').'%')
+            ->orWhere('title', 'like', '%'.$research->input('research').'%')
+            ->orWhere('users.f_name', 'like', '%'.$research->input('research').'%')
+            ->orWhere('categories.name', 'like', '%'.$research->input('research').'%')
+            ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
+            ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%');
+        })
         ->select('posts.*', 'users.f_name', 'users.last_name', 'users.img as user_img', 'categories.name')
+        ->orderBy('id', 'desc')
         ->paginate(1);
 
     $posts_found = DB::table('posts')
         ->leftjoin('users', 'posts.user_id', '=', 'users.id')
         ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-        ->where('posts.id', 'like', '%'.$research->input('research').'%')
-        ->orWhere('title', 'like', '%'.$research->input('research').'%')
-        ->orWhere('status', 'like', '%'.$research->input('research').'%')
-        ->orWhere('users.f_name', 'like', '%'.$research->input('research').'%')
-        ->orWhere('categories.name', 'like', '%'.$research->input('research').'%')
-        ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
-        ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%')
-        ->select('posts.*', 'users.f_name', 'categories.name')
+        ->where('status', '=', 'published')
+        ->where(function ($query) use ($research) {
+            $query->where('posts.id', 'like', '%'.$research->input('research').'%')
+            ->orWhere('title', 'like', '%'.$research->input('research').'%')
+            ->orWhere('users.f_name', 'like', '%'.$research->input('research').'%')
+            ->orWhere('categories.name', 'like', '%'.$research->input('research').'%')
+            ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
+            ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%');
+        })
+        ->select('posts.*', 'users.f_name', 'users.last_name', 'users.img as user_img', 'categories.name')
+        ->orderBy('id', 'desc')
         ->get();
 
     $categories = Category::orderBy('id', 'desc')
