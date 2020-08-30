@@ -81,10 +81,12 @@ class CategoryController extends Controller
 
         $categories_found = Category::where('id', 'like', '%'.$research->input('research').'%')
                 ->orWhere('name', 'like', '%'.$research->input('research').'%')
+                ->orderBy('id', 'desc')
                 ->paginate(4);
         
         $categories_count = Category::where('id', 'like', '%'.$research->input('research').'%')
                 ->orWhere('name', 'like', '%'.$research->input('research').'%')
+                ->orderBy('id', 'desc')
                 ->get();
 
         return view('administration/search_templates/found_cat', [

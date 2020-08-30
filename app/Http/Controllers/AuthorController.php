@@ -115,6 +115,7 @@ class AuthorController extends Controller
                 ->orWhere('last_name', 'like', '%'.$research->input('research').'%')
                 ->orWhere('role', 'like', '%'.$research->input('research').'%')
                 ->orWhere('email', 'like', '%'.$research->input('research').'%')
+                ->orderBy('id', 'desc')
                 ->paginate(10);
 
         $authors_count = User::where('id', 'like', '%'.$research->input('research').'%')
@@ -122,6 +123,7 @@ class AuthorController extends Controller
                 ->orWhere('last_name', 'like', '%'.$research->input('research').'%')
                 ->orWhere('role', 'like', '%'.$research->input('research').'%')
                 ->orWhere('email', 'like', '%'.$research->input('research').'%')
+                ->orderBy('id', 'desc')
                 ->get();
         
 

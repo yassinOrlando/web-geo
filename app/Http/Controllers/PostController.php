@@ -151,6 +151,7 @@ class PostController extends Controller
                 ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
                 ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%')
                 ->select('posts.*', 'users.f_name', 'categories.name')
+                ->orderBy('id', 'desc')
                 ->paginate(10);
 
         $posts_count = DB::table('posts')
@@ -164,6 +165,7 @@ class PostController extends Controller
                 ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
                 ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%')
                 ->select('posts.*', 'users.f_name', 'categories.name')
+                ->orderBy('id', 'desc')
                 ->get();
 
         $post_for_author = 0;
