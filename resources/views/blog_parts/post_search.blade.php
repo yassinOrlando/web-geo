@@ -34,9 +34,9 @@
                 <div class="col mb-4">
                     <div class="card h-100">
                         <a href="{{ route('post', [
-                            'category' => $post->name, 
+                            'category' => Str::of($post->name)->slug('-'), 
                             'cat_id' => $post->category_id, 
-                            'post_name' => $post->title,  
+                            'post_name' => Str::of($post->title)->slug('-'),  
                             'post_id' => $post->id ]) 
                             }}">
                             <img src="{{ route('get_post_img', ['img' => $post->img]) }}" alt="thumbnail" class="card-img-top"

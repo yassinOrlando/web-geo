@@ -130,7 +130,7 @@ Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
         'posts_found' => $posts_found,
         'categories' => $categories,
         'id' => $cat_id,
-        'name' => $category,
+        'name' => ucwords(str_replace('-', ' ', $category)),
     ]);
 })->name('blog_category')->withoutMiddleware([Authenticate::class]);
 
@@ -181,6 +181,7 @@ Route::get('/blog/research/{research?}', function (Request $research) {
 Route::get('/blog/category/{category}/{cat_id}/{post_name}/{post_id}', function ($category, $cat_id, $post_name, $post_id) {
     $post = Post::find($post_id);
     $other_posts = Post::orderBy('id', 'desc')
+            ->where('status', '=', 'published')
             ->limit(6)
             ->get();
     return view('post', [

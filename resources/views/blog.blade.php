@@ -13,7 +13,7 @@
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
               <div class="dropdown-menu" >
                 @foreach($categories as $category)
-                    <a class="dropdown-item" href="{{ route('blog_category', ['category' => $category->name, 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
+                    <a class="dropdown-item" href="{{ route('blog_category', ['category' => Str::of($category->name)->slug('-'), 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
                 @endforeach
               </div>
             </li>
@@ -33,9 +33,9 @@
             <div class="col mb-4">
                 <div class="card h-100">
                     <a href="{{ route('post', [
-                        'category' => $post->category->name, 
+                        'category' => Str::of($post->category->name)->slug('-'), 
                         'cat_id' => $post->category_id, 
-                        'post_name' => $post->title,  
+                        'post_name' => Str::of($post->title)->slug('-'),  
                         'post_id' => $post->id ]) 
                         }}">
                         <img src="{{ route('get_post_img', ['img' => $post->img]) }}" alt="thumbnail" class="card-img-top"
