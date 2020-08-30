@@ -13,7 +13,7 @@
               <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
               <div class="dropdown-menu" >
                 @foreach($categories as $category)
-                    @if ($category->name == $name)
+                    @if ($category->id == $cat_id)
                         <a class="dropdown-item active" href="{{ route('blog_category', ['category' => Str::of($category->name)->slug('-'), 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
                     @else
                         <a class="dropdown-item" href="{{ route('blog_category', ['category' => Str::of($category->name)->slug('-'), 'cat_id' => $category->id]) }}">{{ $category->name }}</a>

@@ -129,7 +129,7 @@ Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
         'posts' => $posts,
         'posts_found' => $posts_found,
         'categories' => $categories,
-        'id' => $cat_id,
+        'cat_id' => $cat_id,
         'name' => ucwords(str_replace('-', ' ', $category)),
     ]);
 })->name('blog_category')->withoutMiddleware([Authenticate::class]);
