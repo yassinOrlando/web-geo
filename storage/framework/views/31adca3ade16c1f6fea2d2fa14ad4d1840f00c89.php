@@ -117,7 +117,7 @@
             <div class="row row-cols-2">
                 <div class="col-10">
                     <p class="text-center"><b> Web Geo - Just explore the world </b></p>
-                    <span class="text-muted">Yassín Orlando Vázquez Paz</span>
+                    <span class="text-muted"> By Yassín Orlando Vázquez Paz | <a href="https://yassinovp.xyz" target="_blank" class="text-white">yassinovp.xyz</a></span>
                 </div>
                 <div class="col-2">
                     <a href="#top" style="color: white;">
