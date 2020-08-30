@@ -134,7 +134,7 @@ Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
     ]);
 })->name('blog_category')->withoutMiddleware([Authenticate::class]);
 
-Route::get('/blog/research/{research?}', function (Request $research) {
+Route::get('/blog/result/{research?}', function (Request $research) {
     $posts = DB::table('posts')
         ->leftjoin('users', 'posts.user_id', '=', 'users.id')
         ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')

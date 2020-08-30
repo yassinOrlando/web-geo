@@ -21,8 +21,7 @@
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Most popular</a>
             </li>
         </ul>
-        <form class="form-inline" action="{{ route('blog_search') }}">
-            @csrf
+        <form class="form-inline" action="{{ route('blog_search') }}" method="GET">
           <input class="form-control mr-sm-2" type="search" name="research" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
