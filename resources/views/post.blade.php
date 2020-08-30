@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div class="card">
+        @if ($post->status == 'draft')
+            <h2 class="text-center"> Draft post preview </h2>
+        @endif
+        <div class="card col-md-8 mx-auto">
             <img src="{{ route('get_post_img', ['img' => $post->img ]) }}"
                 alt="post_pic" 
                 class="card-img-top"

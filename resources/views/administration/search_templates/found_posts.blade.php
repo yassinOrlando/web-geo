@@ -38,7 +38,16 @@
           @foreach ($posts as $post)
           <tr>
             <th scope="row"> {{ $post->id }} </th>
-            <td> {{ $post->title }} </td>
+            <td> 
+              <a href="{{ route('post', [
+                'category' => Str::of($post->name)->slug('-'), 
+                'cat_id' => $post->category_id, 
+                'post_name' => Str::of($post->title)->slug('-'),  
+                'post_id' => $post->id ]) 
+                }}">
+                {{ $post->title }}
+              </a>  
+            </td>
             <td> {{ $post->status }} </td>
             <td> {{ $post->name }} </td>
             <td> {{ $post->f_name }} </td>
