@@ -36,7 +36,7 @@ class AuthorController extends Controller
             User::where('role', '=', 'admin')->get()
         );
         $authors = User::orderby('id', 'desc')
-                        ->paginate(4);
+                        ->paginate(10);
 
         return view('/administration/authors', [
             'authors' => $authors, 
@@ -115,7 +115,7 @@ class AuthorController extends Controller
                 ->orWhere('last_name', 'like', '%'.$research->input('research').'%')
                 ->orWhere('role', 'like', '%'.$research->input('research').'%')
                 ->orWhere('email', 'like', '%'.$research->input('research').'%')
-                ->paginate(1);
+                ->paginate(10);
 
         $authors_count = User::where('id', 'like', '%'.$research->input('research').'%')
                 ->orWhere('f_name', 'like', '%'.$research->input('research').'%')

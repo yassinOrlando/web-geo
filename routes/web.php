@@ -104,7 +104,7 @@ Route::middleware([AdminAuth::class])->group(function () {
 Route::get('/blog', function () {
     $posts = Post::where('status', '=', 'published')
             ->orderBy('id', 'desc')
-            ->paginate(4);
+            ->paginate(18);
 
     $categories = Category::orderBy('id', 'desc')
             ->get();
@@ -118,7 +118,7 @@ Route::get('/blog/category/{category}/{cat_id}', function ($category, $cat_id) {
     $posts = Post::where('category_id', '=', $cat_id)
             ->where('status', '=', 'published')
             ->orderBy('id', 'desc')
-            ->paginate(2);
+            ->paginate(18);
 
     $posts_found = Post::where('category_id', '=', $cat_id)
             ->where('status', '=', 'published')
@@ -149,7 +149,7 @@ Route::get('/blog/result/{research?}', function (Request $research) {
         })
         ->select('posts.*', 'users.f_name', 'users.last_name', 'users.img as user_img', 'categories.name')
         ->orderBy('id', 'desc')
-        ->paginate(1);
+        ->paginate(18);
 
     $posts_found = DB::table('posts')
         ->leftjoin('users', 'posts.user_id', '=', 'users.id')

@@ -27,7 +27,7 @@ class CreateAllDb extends Migration
             $table->string('status');
             $table->string('title');
             $table->string('img');
-            $table->string('content');
+            $table->text('content');
             $table->timestamps();        
         });
 

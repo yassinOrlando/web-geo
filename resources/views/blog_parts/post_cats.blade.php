@@ -14,9 +14,9 @@
               <div class="dropdown-menu" >
                 @foreach($categories as $category)
                     @if ($category->name == $name)
-                        <a class="dropdown-item active" href="{{ route('blog_category', ['category' => $category->name, 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
+                        <a class="dropdown-item active" href="{{ route('blog_category', ['category' => Str::of($category->name)->slug('-'), 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
                     @else
-                        <a class="dropdown-item" href="{{ route('blog_category', ['category' => $category->name, 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
+                        <a class="dropdown-item" href="{{ route('blog_category', ['category' => Str::of($category->name)->slug('-'), 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
                     @endif
                 @endforeach
               </div>

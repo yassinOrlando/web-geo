@@ -33,12 +33,12 @@ class PostController extends Controller
     {
         $total_posts = count(Post::get());
         $posts = Post::orderBy('id', 'desc')
-                        ->paginate(4);
+                        ->paginate(10);
 
         $personal_posts = count(Post::where('user_id', '=', \Auth::user()->id)->get());
         $my_posts = Post::where('user_id', '=', \Auth::user()->id)
                 ->orderBy('id', 'desc')
-                ->paginate(1);
+                ->paginate(10);
         return view('/administration/posts', [
             'posts' => $posts, 
             'total_posts' => $total_posts,
@@ -80,7 +80,7 @@ class PostController extends Controller
 
         $total_posts = count(Post::get());
         $posts = Post::orderBy('id', 'desc')
-                        ->paginate(4);
+                        ->paginate(10);
         $content = Post::where('id', '=', '13')->get();
         return redirect()->route('posts', ['id' => \Auth::user()->id , 'posts' => $posts, 'total_posts' => $total_posts, 'content' => $content])->with('success', 'done');
     }
@@ -151,7 +151,7 @@ class PostController extends Controller
                 ->orWhere('posts.created_at', 'like', '%'.$research->input('research').'%')
                 ->orWhere('posts.updated_at', 'like', '%'.$research->input('research').'%')
                 ->select('posts.*', 'users.f_name', 'categories.name')
-                ->paginate(1);
+                ->paginate(10);
 
         $posts_count = DB::table('posts')
                 ->leftjoin('users', 'posts.user_id', '=', 'users.id')

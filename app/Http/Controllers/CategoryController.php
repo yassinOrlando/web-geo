@@ -28,7 +28,7 @@ class CategoryController extends Controller
     {
         $total_cats = count(Category::get());
         $categories = Category::orderby('id', 'desc')
-                        ->paginate(1);
+                        ->paginate(4);
         return view('/administration/categories', ['categories' => $categories, 'total_cats' => $total_cats]);
     }
 
@@ -81,7 +81,7 @@ class CategoryController extends Controller
 
         $categories_found = Category::where('id', 'like', '%'.$research->input('research').'%')
                 ->orWhere('name', 'like', '%'.$research->input('research').'%')
-                ->paginate(1);
+                ->paginate(4);
         
         $categories_count = Category::where('id', 'like', '%'.$research->input('research').'%')
                 ->orWhere('name', 'like', '%'.$research->input('research').'%')

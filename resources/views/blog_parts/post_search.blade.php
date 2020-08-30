@@ -13,7 +13,7 @@
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
               <div class="dropdown-menu" >
                 @foreach($categories as $category)
-                <a class="dropdown-item" href="{{ route('blog_category', ['category' => $category->name, 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
+                <a class="dropdown-item" href="{{ route('blog_category', ['category' => Str::of($category->name)->slug('-'), 'cat_id' => $category->id]) }}">{{ $category->name }}</a>
                 @endforeach
               </div>
             </li>
