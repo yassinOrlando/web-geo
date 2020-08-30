@@ -49,7 +49,7 @@
 
     <div class="col-md-12">
         <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-            value="{{ old('title') }}" autocomplete="title" autofocus>
+            value="{{ old('title') }}" autofocus>
 
         @error('title')
         <span class="invalid-feedback" category_id="alert">

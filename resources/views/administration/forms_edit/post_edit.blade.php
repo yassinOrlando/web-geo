@@ -82,7 +82,7 @@
 
     <div class="col-md-12">
         <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-            value="{{ $post->title }}" autocomplete="title" autofocus>
+            value="{{ $post->title }}" autofocus>
 
         @error('title')
         <span class="invalid-feedback" category_id="alert">
